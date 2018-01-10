@@ -28,7 +28,7 @@
 <!-- Si existe el curriculum  se muestra todos los atributos -->
 <jstl:if test="${existCurricula}">
 
-<display:table name="curricula" class="displaytag" id="row">
+<display:table name="curricula" class="displaytag" id="row" requestURI="${requestURI}" pagesize="5" keepStatus="true">
 
   	<!-- Attributes -->
   	<jstl:if test="${row.id != 0}">
@@ -51,7 +51,7 @@
 
 <spring:message code="curricula.personalRecord" var="personalHeader" />
 <h2><jstl:out value="${personalHeader}"></jstl:out></h2>
-<display:table name="personalRecord" class="displaytag" id="row">
+<display:table name="personalRecord" class="displaytag" id="row" requestURI="${requestURI}" pagesize="5" keepStatus="true">
 
 	<!-- Attributes -->
 	<spring:message code="curricula.personalRecord.fullName" var="fullNameHeader" />
@@ -90,7 +90,7 @@
 
 <spring:message code="curricula.educationRecord" var="educationHeader" />
 <h2><jstl:out value="${educationHeader}"></jstl:out></h2>
-<display:table name="educationRecord" class="displaytag" id="row">
+<display:table name="educationRecord" class="displaytag" id="row" requestURI="${requestURI}" pagesize="5" keepStatus="true">
 
 	<!-- Attributes -->
 	<spring:message code="curricula.educationRecord.diplomaTitle" var="diplomaTitleHeader" />
@@ -137,7 +137,7 @@
 
 <spring:message code="curricula.professionalRecord" var="professionalHeader" />
 <h2><jstl:out value="${professionalHeader}"></jstl:out></h2>
-<display:table name="professionalRecord" class="displaytag" id="row">
+<display:table name="professionalRecord" class="displaytag" id="row" requestURI="${requestURI}" pagesize="5" keepStatus="true">
 
 	<!-- Attributes -->
 	<spring:message code="curricula.professionalRecord.companyName" var="companyNameHeader" />
@@ -184,7 +184,7 @@
 
 <spring:message code="curricula.endorserRecord" var="endorserHeader" />
 <h2><jstl:out value="${endorserHeader}"></jstl:out></h2>
-<display:table name="endorserRecord" class="displaytag" id="row">
+<display:table name="endorserRecord" class="displaytag" id="row" requestURI="${requestURI}" pagesize="5" keepStatus="true">
 
 	<!-- Attributes -->
 	<spring:message code="curricula.endorserRecord.fullName" var="fullNameHeader" />
@@ -232,7 +232,7 @@
 
 <spring:message code="curricula.miscellaneousRecord" var="miscellaneousHeader" />
 <h2><jstl:out value="${miscellaneousHeader}"></jstl:out></h2>
-<display:table name="miscellaneousRecord" class="displaytag" id="row">
+<display:table name="miscellaneousRecord" class="displaytag" id="row" requestURI="${requestURI}" pagesize="5" keepStatus="true">
 
 	<!-- Attributes -->
 	<spring:message code="curricula.miscellaneousRecord.title" var="titleHeader" />

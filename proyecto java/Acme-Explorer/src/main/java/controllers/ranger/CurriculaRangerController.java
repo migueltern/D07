@@ -58,6 +58,8 @@ public class CurriculaRangerController extends AbstractController {
 			result.addObject("educationRecord", curricula.getEducationRecords());
 			result.addObject("personalRecord", curricula.getPersonalRecord());
 			result.addObject("showLink", true);
+			result.addObject("requestURI", "curricula/ranger/display.do");
+
 		}
 
 		return result;

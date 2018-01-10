@@ -55,6 +55,7 @@ public class CurriculaController extends AbstractController {
 			result.addObject("professionalRecord", curricula.getProfessionalRecords());
 			result.addObject("educationRecord", curricula.getEducationRecords());
 			result.addObject("personalRecord", curricula.getPersonalRecord());
+			result.addObject("requestURI", "curricula/display.do");
 		}
 
 		return result;
