@@ -177,7 +177,7 @@ public class ApplicationForService {
 	}
 
 	// Other business methods------------------------------------------------------
-	private boolean checkCreditCard(final CreditCard creditCard) {
+	public boolean checkCreditCard(final CreditCard creditCard) {
 		boolean res;
 		Calendar calendar;
 		int actualYear;
