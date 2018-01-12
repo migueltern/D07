@@ -120,7 +120,10 @@ public class StageManagerController extends AbstractController {
 
 				result = new ModelAndView("redirect:list.do?tripId=" + stage.getTrip().getId());
 			} catch (Throwable oops) {
-				result = this.createEditModelAndView(stage, "stage.commit.error");
+				if (oops.getMessage().equals("The number of this stage must be different"))
+					result = this.createEditModelAndView(stage, "stage.commit.error.duplicateNumber");
+				else
+					result = this.createEditModelAndView(stage, "stage.commit.error");
 			}
 
 		return result;
