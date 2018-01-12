@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,9 @@ public class CurriculaServiceTest extends AbstractTest {
 	@Autowired
 	private RangerService			rangerService;
 
+	@PersistenceContext
+	private EntityManager			entityManager;
+
 
 	// Test -----------------------------------------------------------------------------
 
@@ -55,23 +61,22 @@ public class CurriculaServiceTest extends AbstractTest {
 	}
 	@Test
 	public void testSave() {
-		this.authenticate("ranger5");
+		this.authenticate("ranger1");
 		Curricula curricula;
 		curricula = this.curriculaService.create();
 
-		PersonalRecord personalRecord = this.personalRecordService.create();
+		final PersonalRecord personalRecord = this.personalRecordService.create();
 		personalRecord.setFullName("personalRecord 8");
 		personalRecord.setEmail("dany@gmail.com");
 		personalRecord.setLinkedProfile("https://www.example.com");
 		personalRecord.setPhoto("https://www.example.com");
 		personalRecord.setPhone("+34(578)1239");
 
-		PersonalRecord newPersonalRecord = this.personalRecordService.save(personalRecord);
+		final PersonalRecord newPersonalRecord = this.personalRecordService.save(personalRecord);
 		curricula.setPersonalRecord(newPersonalRecord);
 
-		curricula.setTicker("041117-FFFF");
-
 		this.curriculaService.save(curricula);
+		this.entityManager.flush();
 		this.authenticate(null);
 
 	}

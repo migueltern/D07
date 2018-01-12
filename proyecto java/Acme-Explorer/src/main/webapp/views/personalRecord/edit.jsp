@@ -39,7 +39,7 @@
 	<form:label path="photo">
 		<spring:message code="personalRecord.photo" />:
 	</form:label>
-	<form:input path="photo"/>
+	<form:input path="photo" placeholder="http://" />
 	<form:errors cssClass="error" path="photo" />
 	<br />
 	
@@ -86,6 +86,6 @@
 		value="<spring:message code="personalRecord.save" />" onclick="return valida();" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="personalRecord.cancel" />"
-		onclick="javascript:  window.location.replace('curricula/ranger/display.do');" />
+		onclick="javascript:  window.location.replace('welcome/index.do');" />
 	<br />
 </form:form>

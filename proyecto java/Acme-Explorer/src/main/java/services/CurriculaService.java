@@ -153,8 +153,17 @@ public class CurriculaService {
 
 		calendar = Calendar.getInstance();
 		String ticker;
+		String dias;
+		String mes;
 
-		ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + String.valueOf(calendar.get(Calendar.MONTH) + 1) + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+		dias = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+		mes = String.valueOf(calendar.get(Calendar.MONTH));
+		if (dias.length() <= 1)
+			ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "0" + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+		if (mes.length() <= 1)
+			ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + "0" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+		else
+			ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + String.valueOf(calendar.get(Calendar.MONTH) + 1) + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
 		final char[] arr = new char[] {
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 		};
@@ -194,27 +203,27 @@ public class CurriculaService {
 			wordsPublicated.add(edcuation.getDiplomaTitle().toLowerCase());
 			wordsPublicated.add(edcuation.getInstitution().toLowerCase());
 			wordsPublicated.add(edcuation.getLink().toLowerCase());
-			for (String c : edcuation.getComments())
+			for (final String c : edcuation.getComments())
 				wordsPublicated.add(c.toLowerCase());
 		}
 		for (final EndorserRecord endorser : curriculaFromActor.getEndorserRecords()) {
 			wordsPublicated.add(endorser.getEmail().toLowerCase());
 			wordsPublicated.add(endorser.getFullName().toLowerCase());
 			wordsPublicated.add(endorser.getLinkedProfile().toLowerCase());
-			for (String c : endorser.getComments())
+			for (final String c : endorser.getComments())
 				wordsPublicated.add(c.toLowerCase());
 		}
 		for (final MiscellaneousRecord miscellaneous : curriculaFromActor.getMiscellaneousRecords()) {
 			wordsPublicated.add(miscellaneous.getTitle().toLowerCase());
 			wordsPublicated.add(miscellaneous.getLink().toLowerCase());
-			for (String c : miscellaneous.getComments())
+			for (final String c : miscellaneous.getComments())
 				wordsPublicated.add(c.toLowerCase());
 		}
 		for (final ProfessionalRecord professional : curriculaFromActor.getProfessionalRecords()) {
 			wordsPublicated.add(professional.getCompanyName().toLowerCase());
 			wordsPublicated.add(professional.getLink().toLowerCase());
 			wordsPublicated.add(professional.getRole().toLowerCase());
-			for (String c : professional.getComments())
+			for (final String c : professional.getComments())
 				wordsPublicated.add(c.toLowerCase());
 		}
 		for (final String word : wordsPublicated)

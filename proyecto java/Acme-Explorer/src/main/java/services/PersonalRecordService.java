@@ -35,6 +35,7 @@ public class PersonalRecordService {
 		PersonalRecord personalRecord;
 
 		personalRecord = new PersonalRecord();
+		personalRecord.setPhone("+34");
 
 		return personalRecord;
 	}
