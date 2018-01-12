@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +23,7 @@ public class Category extends DomainEntity {
 	// Attributes -------------------------------------------------------------
 
 	private String	name;
+	private String	concat;
 
 
 	@NotBlank
@@ -70,6 +72,21 @@ public class Category extends DomainEntity {
 
 	public void setTrips(Collection<Trip> trips) {
 		this.trips = trips;
+	}
+
+	//Derivated
+
+	@Transient
+	public String getConcat() {
+		if (this.getFatherCategory() != null)
+			this.concat = this.getFatherCategory().getName() + "-" + this.getName();
+		else
+			this.concat = this.getName();
+		return this.concat;
+	}
+
+	public void setConcat(String concat) {
+		this.concat = concat;
 	}
 
 }

@@ -73,9 +73,11 @@ public class MessageFolderService {
 
 		Assert.notNull(messageFolder);
 		Assert.notNull(actor);
-		if (messageFolder.getId() != 0)
+		if (messageFolder.getId() != 0) {
 			Assert.isTrue(this.actorService.findPrincipal().getMessagesFolders().contains(messageFolder));
-
+			Assert.isTrue(messageFolder.isModifiable() == true);
+		}
+		messageFolder.setModifiable(true);
 		res = this.messageFolderRepository.save(messageFolder);
 		if (messageFolder.getId() == 0)
 			actor.getMessagesFolders().add(res);
