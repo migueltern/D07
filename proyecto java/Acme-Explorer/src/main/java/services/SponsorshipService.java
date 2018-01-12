@@ -28,6 +28,9 @@ public class SponsorshipService {
 	@Autowired
 	private SponsorService			sponsorService;
 
+	@Autowired
+	private ApplicationForService	applicationForService;
+
 
 	// Constructors-------------------------------------------------------
 
@@ -66,6 +69,7 @@ public class SponsorshipService {
 	public Sponsorship save(Sponsorship sponsorship) {
 		Assert.notNull(sponsorship);
 		Sponsorship result;
+		Assert.isTrue(this.applicationForService.checkCreditCard(sponsorship.getCreditCard()));
 		result = this.sponsorshipRepository.save(sponsorship);
 		Assert.notNull(result);
 		return result;
