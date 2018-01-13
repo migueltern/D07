@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
+import services.ConfigurationSystemService;
 import controllers.AbstractController;
 import domain.Category;
 
@@ -25,7 +26,10 @@ public class CategoryAdministratorController extends AbstractController {
 	//Services--------------------------------------------
 
 	@Autowired
-	private CategoryService	categoryService;
+	private CategoryService				categoryService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	//Listing
@@ -68,8 +72,11 @@ public class CategoryAdministratorController extends AbstractController {
 
 		ModelAndView result;
 		Category category;
+		Collection<Category> defaultCategories;
 
+		defaultCategories = this.configurationSystemService.defaultCategories();
 		category = this.categoryService.findOne(categoryId);
+		Assert.isTrue(!defaultCategories.contains(category));
 		Assert.notNull(category);
 
 		result = this.createEditModelAndView(category);
