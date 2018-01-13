@@ -206,6 +206,13 @@ public class TripService {
 		return trips;
 	}
 
+	public Collection<Trip> findAllTripsPublishedNotStartedNotCancelled() {
+		Collection<Trip> trips;
+		trips = new ArrayList<Trip>(this.tripRepository.findAllTripsPublishedNotStartedNotCancelled());
+		Assert.notNull(trips);
+		return trips;
+	}
+
 	//	//Para sacar los trips con estado ACCEPTED para que un explorer pueda cancelarlo
 	public Collection<Trip> findTripsWhitStatusAcceptedNotStarted() {
 		Collection<Trip> trips;
@@ -309,7 +316,7 @@ public class TripService {
 		explorer = this.explorerService.findOne(explorerId);
 		applicationsForOfExplorer = explorer.getApplicationsFor();
 		alltrips = this.tripRepository.findAll();
-		tripsForApply = this.tripRepository.findAllTripsPublishedNotStarted();
+		tripsForApply = this.tripRepository.findAllTripsPublishedNotStartedNotCancelled();
 
 		for (final ApplicationFor a : applicationsForOfExplorer)
 			tripsOfExplorer.add(a.getTrip());
