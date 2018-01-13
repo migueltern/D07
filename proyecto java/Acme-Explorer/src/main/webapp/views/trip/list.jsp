@@ -57,19 +57,20 @@
 		<a href="${displayURL}"><spring:message code="trip.display" /></a>
 	</display:column>
 
+
 <!-- Edit Para un Manager-->
 	<security:authorize access="hasRole('MANAGER')">
 	<spring:message code="trip.publicationDate" var="publicationDate" />	
 	<spring:message code="trip.edit" var="Edit" />
 		<display:column title="${Edit}" sortable="true">
-			<jstl:if test="${row.publicationDate>date  and row.manager==manager and row.reasonWhy==null or row.reasonWhy==''}">
+			<jstl:if test="${row.manager==manager && row.publicationDate>date && (row.reasonWhy==null or row.reasonWhy=='')}">
 			
 				<spring:url value="trip/manager_/edit.do" var="editURL">
 					<spring:param name="tripId" value="${row.id}" />
 				</spring:url>
 				<a href="${editURL}"><spring:message code="trip.edit" /></a>
 			
-			</jstl:if>
+		</jstl:if>
 		</display:column>		
 	</security:authorize>
 	
@@ -229,7 +230,7 @@
 	<spring:message code="trip.publicationDate" var="publicationDate" />	
 	<spring:message code="trip.tags.name" var="Tag" />
 		<display:column title="${Tag}" sortable="true">
-			<jstl:if test="${row.manager==manager and row.startDate>date and row.reasonWhy==null or row.reasonWhy==''}">
+			<jstl:if test="${row.manager==manager and row.startDate>date and (row.reasonWhy==null or row.reasonWhy=='')}">
 				<spring:url value="tag/manager_/list.do" var="tagURL">
 					<spring:param name="tripId" value="${row.id}" />
 				</spring:url>
