@@ -74,10 +74,9 @@
 	<h2><spring:message code="trip.notes.name.table" /></h2>	
 	<display:table name="notes" id="row" class="displaytag">
 	
-		<spring:message code="trip.notes.createdMoment" var="titleHeader" />
-		<display:column property="createdMoment" title="${titleHeader}" sortable="false" >
-			<jstl:out value="${row.createdMoment}"></jstl:out>
-		</display:column>
+		<spring:message code="trip.format.date" var="pattern"></spring:message>
+		<spring:message code="trip.notes.createdMoment" var="createdMomentHeader" />
+		<display:column property="createdMoment" title="${createdMomentHeader}" sortable="false" format="${pattern}"/>
 		
 		<spring:message code="trip.notes.body" var="titleHeader2" />
 		<display:column property="body" title="${titleHeader2}" sortable="false" >
@@ -94,12 +93,49 @@
 			<jstl:out value="${row.reply}"></jstl:out>
 		</display:column>
 		
-		<spring:message code="trip.notes.replyMoment" var="titleHeader5" />
-		<display:column property="replyMoment" title="${titleHeader5}" sortable="false" >
-			<jstl:out value="${row.replyMoment}"></jstl:out>
+		<spring:message code="trip.format.date" var="pattern"></spring:message>
+		<spring:message code="trip.notes.replyMoment" var="replayMomentHeader" />
+		<display:column property="replyMoment" title="${replayMomentHeader}" sortable="false" format="${pattern}"/>
+			
+	</display:table>
+	
+	
+	
+	<h2><spring:message code="trip.stories.name.table" /></h2>	
+	<display:table name="stories" id="row" class="displaytag">
+	
+		<spring:message code="trip.stories.title" var="titleHeader5" />
+		<display:column property="title" title="${titleHeader5}" sortable="false" >
+			<jstl:out value="${row.title}"></jstl:out>
+		</display:column>
+		
+		<spring:message code="trip.stories.text" var="titleHeader6" />
+		<display:column property="text" title="${titleHeader6}" sortable="false" >
+			<jstl:out value="${row.text}"></jstl:out>
 		</display:column>
 		
 	</display:table>
+	
+	
+	<h2><spring:message code="trip.classes.name.table" /></h2>	
+	<display:table name="classes" id="row" class="displaytag">
+	
+		<spring:message code="trip.classes.title" var="titleHeader5" />
+		<display:column property="title" title="${titleHeader5}" sortable="false" >
+			<jstl:out value="${row.title}"></jstl:out>
+		</display:column>
+		
+		<spring:message code="trip.classes.description" var="titleHeader6" />
+		<display:column property="description" title="${titleHeader6}" sortable="false" >
+			<jstl:out value="${row.description}"></jstl:out>
+		</display:column>
+		
+		<spring:message code="trip.format.date" var="pattern"></spring:message>
+		<spring:message code="trip.classes.moment" var="createdMomentHeader" />
+		<display:column property="organisedMoment" title="${createdMomentHeader}" sortable="false" format="${pattern}"/>
+			
+	</display:table>
+	
 	
 	
 <h2><spring:message code="sponsorship.bannerURL" /></h2>

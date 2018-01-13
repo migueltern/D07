@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SponsorshipService;
+import services.StoryService;
+import services.SurvivalClassService;
 import services.TagService;
 import services.TripService;
 import domain.AuditRecord;
 import domain.Note;
 import domain.Stage;
+import domain.Story;
+import domain.SurvivalClass;
 import domain.Tag;
 import domain.Trip;
 
@@ -26,12 +30,16 @@ public class TripController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 	@Autowired
-	private TripService			tripService;
+	private TripService				tripService;
 
 	@Autowired
-	private SponsorshipService	sponsorshipService;
+	private SponsorshipService		sponsorshipService;
 	@Autowired
-	private TagService			tagService;
+	private TagService				tagService;
+	@Autowired
+	private StoryService			storyService;
+	@Autowired
+	private SurvivalClassService	survivalClassService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -107,8 +115,12 @@ public class TripController extends AbstractController {
 		Collection<Stage> stages;
 		Collection<AuditRecord> auditRecords;
 		Collection<Note> notes;
+		Collection<Story> stories;
+		Collection<SurvivalClass> classes;
 		String url;
 
+		classes = new ArrayList<>(this.survivalClassService.findAllSurvivalClassByTripId(tripId));
+		stories = new ArrayList<Story>(this.storyService.findAllStoriesByTripId(tripId));
 		tags = new ArrayList<Tag>(this.tagService.findAllTagByTripId(tripId));
 		trip = this.tripService.findOne(tripId);
 		notes = new ArrayList<Note>(trip.getNotes());
@@ -123,6 +135,8 @@ public class TripController extends AbstractController {
 		result.addObject("auditRecords", auditRecords);
 		result.addObject("notes", notes);
 		result.addObject("sponsorshiprandom", url);
+		result.addObject("stories", stories);
+		result.addObject("classes", classes);
 
 		return result;
 	}
