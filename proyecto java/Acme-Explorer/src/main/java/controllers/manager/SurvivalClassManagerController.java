@@ -85,15 +85,13 @@ public class SurvivalClassManagerController extends AbstractController {
 		SurvivalClass survivalClass;
 		Manager manager;
 		Trip trip;
-		Collection<Trip> trips;
 		Date date;
 
 		trip = this.tripService.findOne(tripId);
 		date = new Date();
 		Assert.isTrue(trip.getFinishDate().after(date) && trip.isCancelled() == false);
 		manager = this.managerService.findByPrincipal();
-		trips = this.survivalClassService.findTrips();
-		Assert.isTrue(trips.contains(trip) && trip.getManager().equals(manager), "Cannot commit this operation, because it's illegal");
+		Assert.isTrue(trip.getManager().equals(manager), "Cannot commit this operation, because it's illegal");
 		survivalClass = this.survivalClassService.create(trip);
 
 		result = this.createEditModelAndView(survivalClass);

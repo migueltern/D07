@@ -220,9 +220,9 @@
 </security:authorize>
 
 <jstl:if test="${row.cancelled==false}">
-<spring:message code="trip.reasonWhy" var="reasonWhyHeader" />
+<spring:message code="trip.reasonWhy" />
 </jstl:if>
-	<display:column property="reasonWhy" title="${reasonWhyHeader}" sortable="true" />
+	<display:column property="reasonWhy" sortable="true" />
 	
 	
 	<security:authorize access="hasRole('MANAGER')">
