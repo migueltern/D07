@@ -23,6 +23,7 @@
 
 <!-- Listing trips -->
 
+<jstl:if test="${showSearch}">
 <form:form action="${requestURISearch}" method="get">
 
 	<label><spring:message code="trip.search.keyword"/></label>
@@ -32,6 +33,7 @@
 	<input type="submit" value="<spring:message code="trip.search" />" /> 	 
 	
 </form:form>
+</jstl:if>
 
 
 	<%-- <spring:url value="applicationFor/manager/edit.do" var="editlink">
