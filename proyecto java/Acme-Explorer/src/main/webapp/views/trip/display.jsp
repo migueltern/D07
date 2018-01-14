@@ -74,7 +74,7 @@
 	<h2><spring:message code="trip.notes.name.table" /></h2>	
 	<display:table name="notes" id="row" class="displaytag">
 	
-		<spring:message code="trip.format.date" var="pattern"></spring:message>
+		<spring:message code="trip.format.date1" var="pattern"></spring:message>
 		<spring:message code="trip.notes.createdMoment" var="createdMomentHeader" />
 		<display:column property="createdMoment" title="${createdMomentHeader}" sortable="false" format="${pattern}"/>
 		
@@ -93,7 +93,7 @@
 			<jstl:out value="${row.reply}"></jstl:out>
 		</display:column>
 		
-		<spring:message code="trip.format.date" var="pattern"></spring:message>
+		<spring:message code="trip.format.date1" var="pattern"></spring:message>
 		<spring:message code="trip.notes.replyMoment" var="replayMomentHeader" />
 		<display:column property="replyMoment" title="${replayMomentHeader}" sortable="false" format="${pattern}"/>
 			
@@ -130,7 +130,7 @@
 			<jstl:out value="${row.description}"></jstl:out>
 		</display:column>
 		
-		<spring:message code="trip.format.date" var="pattern"></spring:message>
+		<spring:message code="trip.format.date1" var="pattern"></spring:message>
 		<spring:message code="trip.classes.moment" var="createdMomentHeader" />
 		<display:column property="organisedMoment" title="${createdMomentHeader}" sortable="false" format="${pattern}"/>
 			
