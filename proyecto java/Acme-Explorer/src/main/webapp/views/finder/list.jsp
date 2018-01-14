@@ -106,12 +106,14 @@
 	<display:column property="price" title="${priceHeader}" sortable="true" format="${patternPrice}"/>
 
 	
+	<spring:message code="trip.format.date2" var="pattern"></spring:message>
 	<spring:message code="trip.startDate" var="startDateHeader" />
-	<display:column property="startDate" title="${startDateHeader}" sortable="true" />
-
-
+	<display:column property="startDate" title="${startDateHeader}" sortable="true" format="${pattern}"/>
+		
+	
+	<spring:message code="trip.format.date2" var="pattern"></spring:message>
 	<spring:message code="trip.finishDate" var="finishDateHeader" />
-	<display:column property="finishDate" title="${finishDateHeader}" sortable="true"  />
+	<display:column property="finishDate" title="${finishDateHeader}" sortable="true" format="${pattern}"/>
 	
 	<spring:message code="trip.ranger" var="rangerHeader" />
 	<display:column title="${rangerHeader}" sortable="true">
