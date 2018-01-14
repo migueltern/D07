@@ -110,6 +110,7 @@
 		<security:intercept-url pattern="/auditorProfile/administrator/**" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/managerProfile/administrator/**" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/sponsorProfile/administrator/**" access="hasRole('ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/explorerProfile/administrator/**" access="hasRole('ADMINISTRATOR')"/>
 		
 	
 	

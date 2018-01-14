@@ -196,6 +196,7 @@
 					<li><a href="managerProfile/administrator/create.do"><spring:message code="master.page.managerProfile.administrator.create" /></a></li>
 					<li><a href="sponsorProfile/administrator/create.do"><spring:message code="master.page.sponsorProfile.administrator.create" /></a></li>
 					<li><a href="administrator/create.do"><spring:message code="master.page.administratorProfile.administrator.create" /></a></li>
+					<li><a href="explorerProfile/create.do"><spring:message code="master.page.explorerProfile.create" /></a></li>
 					
 				</ul></li>
 				
