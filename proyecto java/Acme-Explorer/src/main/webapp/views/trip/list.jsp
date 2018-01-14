@@ -224,11 +224,11 @@
 	</display:column>
 </security:authorize>
 
-<jstl:if test="${row.cancelled==false}">
+<jstl:if test="${row.cancelled== true}">
 <spring:message code="trip.reasonWhy" />
-</jstl:if>
+
 	<display:column property="reasonWhy" sortable="true" />
-	
+	</jstl:if>
 	
 	<security:authorize access="hasRole('MANAGER')">
 	<spring:message code="trip.publicationDate" var="publicationDate" />	
