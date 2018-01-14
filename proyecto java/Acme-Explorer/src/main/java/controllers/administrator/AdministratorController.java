@@ -68,7 +68,10 @@ public class AdministratorController extends AbstractController {
 				this.administratorService.save(administrator);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(administrator, "administrator.commit.error");
+				if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
+					result = this.createEditModelAndView(administrator, "administrator.commit.error.duplicateProfile");
+				else
+					result = this.createEditModelAndView(administrator, "administrator.commit.error");
 			}
 
 		return result;
