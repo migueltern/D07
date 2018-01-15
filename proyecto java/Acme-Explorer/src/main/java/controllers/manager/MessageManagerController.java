@@ -203,8 +203,6 @@ public class MessageManagerController extends AbstractController {
 		Assert.notNull(aux);
 
 		message.setRecipient(aux.getSender());
-		message.setSubject("Reply to:\"" + aux.getSubject() + "\"");
-		message.setBody("\n-----------------\nSender: " + aux.getSender().getName() + "\n Recipient: " + aux.getRecipient().getName() + "\n Moment: " + aux.getMoment() + "\n Subject: " + aux.getSubject() + "\n Body: " + aux.getBody() + "\"\"");
 
 		result = this.createReplyModelAndView(message);
 		result.addObject("requestURI", "message/manager/send.do");
