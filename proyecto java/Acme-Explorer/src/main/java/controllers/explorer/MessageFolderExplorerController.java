@@ -87,7 +87,11 @@ public class MessageFolderExplorerController extends AbstractController {
 				this.messageFolderService.save(messageFolder);
 				result = new ModelAndView("redirect:/messageFolder/explorer/list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(messageFolder, "messageFolder.commit.error");
+				if (oops.getMessage().equals("This folder is not modifiable"))
+					result = this.createEditModelAndView(messageFolder, "messageFolder.commit.error.notModifiable");
+				else
+					result = this.createEditModelAndView(messageFolder, "messageFolder.commit.error");
+
 			}
 
 		return result;
@@ -136,7 +140,7 @@ public class MessageFolderExplorerController extends AbstractController {
 		result = new ModelAndView("messageFolder/edit");
 		result.addObject("messageFolder", messageFolder);
 		result.addObject("mes", mess);
-		result.addObject("messageCode", messageCode);
+		result.addObject("message", messageCode);
 		result.addObject("requestURI", "messageFolder/explorer/edit.do");
 
 		return result;

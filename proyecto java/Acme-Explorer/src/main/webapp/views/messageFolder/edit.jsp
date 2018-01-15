@@ -59,7 +59,7 @@
 	<security:authorize access="hasRole('RANGER')">
 	<input type="button" name="cancel"
 		value="<spring:message code="messageFolder.cancel" />"
-		onclick="javascript:  window.location.replace('messageFolder/administrator/list.do');" />
+		onclick="javascript:  window.location.replace('messageFolder/ranger/list.do');" />
 	<br />
 	</security:authorize>
 	

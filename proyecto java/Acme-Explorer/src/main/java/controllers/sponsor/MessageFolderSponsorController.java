@@ -87,7 +87,11 @@ public class MessageFolderSponsorController extends AbstractController {
 				this.messageFolderService.save(messageFolder);
 				result = new ModelAndView("redirect:/messageFolder/sponsor/list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(messageFolder, "messageFolder.commit.error");
+				if (oops.getMessage().equals("This folder is not modifiable"))
+					result = this.createEditModelAndView(messageFolder, "messageFolder.commit.error.notModifiable");
+				else
+					result = this.createEditModelAndView(messageFolder, "messageFolder.commit.error");
+
 			}
 
 		return result;

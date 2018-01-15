@@ -75,7 +75,7 @@ public class MessageFolderService {
 		Assert.notNull(actor);
 		if (messageFolder.getId() != 0) {
 			Assert.isTrue(this.actorService.findPrincipal().getMessagesFolders().contains(messageFolder));
-			Assert.isTrue(messageFolder.isModifiable() == true);
+			Assert.isTrue(messageFolder.isModifiable() == true, "This folder is not modifiable");
 		}
 		messageFolder.setModifiable(true);
 		res = this.messageFolderRepository.save(messageFolder);
@@ -89,7 +89,7 @@ public class MessageFolderService {
 	public void delete(final MessageFolder messageFolder) {
 		final Actor actorPrincipal;
 		Assert.notNull(messageFolder);
-		Assert.isTrue(messageFolder.isModifiable() == true);
+		Assert.isTrue(messageFolder.isModifiable() == true, "This folder is not modifiable");
 		Assert.isTrue(messageFolder.getId() != 0);
 		Assert.isTrue(this.messageFolderRepository.exists(messageFolder.getId()));
 
