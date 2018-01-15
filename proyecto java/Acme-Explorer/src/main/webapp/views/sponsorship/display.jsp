@@ -25,11 +25,11 @@
   requestURI="sponsorship/sponsor/display.do" id="row">
   
   <display:column>
-  <spring:message code="sponsorship.link" />:
-	<jstl:out value="${row.link}"></jstl:out>
-	<p>
-	<spring:message code="sponsorship.bannerURL.banner" />:
-		<jstl:out value="${row.bannerURL}"></jstl:out>
+	
+	<a href="${row.link}"><spring:message code = "sponsorship.link"></spring:message></a>
+	
+	<p>		
+		<a href="${row.bannerURL}"><spring:message code="sponsorship.bannerURL.banner"/></a>
 	</p>
 	
 	<form:label path="sponsorship.creditCard">
