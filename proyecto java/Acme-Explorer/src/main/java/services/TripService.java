@@ -113,6 +113,7 @@ public class TripService {
 		dateNow = new Date();
 		Assert.isTrue(trip.getStartDate().before(trip.getFinishDate()));
 		Assert.isTrue(trip.getPublicationDate().after(dateNow));
+		Assert.isTrue(trip.getPublicationDate().before(trip.getStartDate()));
 		if (trip.getId() != 0)
 			Assert.isTrue(trip.getPublicationDate().after(dateNow));
 
