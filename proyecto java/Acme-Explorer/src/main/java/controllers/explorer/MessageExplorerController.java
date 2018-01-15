@@ -53,6 +53,12 @@ public class MessageExplorerController extends AbstractController {
 
 		ModelAndView result;
 		Collection<Message> msgs;
+		Actor actor;
+		Collection<MessageFolder> messageFolders;
+
+		actor = this.actorService.findPrincipal();
+		messageFolders = actor.getMessagesFolders();
+		Assert.isTrue(messageFolders.contains(this.messageFolderService.findOne(messageFolderId)));
 
 		msgs = this.messageService.messagesOfFolder(messageFolderId);
 
