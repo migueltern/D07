@@ -63,9 +63,10 @@ public class ValueManagerController {
 		else
 			try {
 				Trip trip1 = this.trip;
-				Assert.isTrue(trip1.getReasonWhy().trim().isEmpty());
 				Tag tag1 = this.tag;
-				Assert.isTrue(!value.getTrip().getPublicationDate().before(now));
+				Assert.isTrue((trip1.getReasonWhy() == null) || (trip1.getReasonWhy().trim().isEmpty()));
+				//Continua si la fecha de publicacion es posterior a la actual
+				Assert.isTrue(trip1.getPublicationDate().after(now));
 				this.valueService.save1(value, trip1, tag1);
 				result = new ModelAndView("redirect:../../trip/manager_/list.do");
 			} catch (final Throwable oops) {

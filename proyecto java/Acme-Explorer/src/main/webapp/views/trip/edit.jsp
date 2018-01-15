@@ -25,7 +25,7 @@
 	<form:hidden path="version" />
 	<form:hidden path="ticker"/>
 	<form:hidden path="price"/>
-	<form:hidden path="reasonWhy"/>
+
 	<form:hidden path="cancelled"/>
 	<form:hidden path="manager"/>
 	<form:hidden path="stages"/>

@@ -76,6 +76,7 @@
 		</display:column>		
 	</security:authorize>
 	
+	
 <!-- Apply Para un Explorer-->
 	<security:authorize access="hasRole('EXPLORER')">			
 		<spring:message code="trip.apply1" var="apply1" />

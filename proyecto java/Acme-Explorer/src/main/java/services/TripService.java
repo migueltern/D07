@@ -101,6 +101,7 @@ public class TripService {
 		trip.setTicker(this.generatedTicker());
 		trip.setRanger(ranger);
 		trip.setTicker(this.generatedTicker());
+		trip.setReasonWhy(null);
 
 		return trip;
 	}
