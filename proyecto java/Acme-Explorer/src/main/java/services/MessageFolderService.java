@@ -68,8 +68,10 @@ public class MessageFolderService {
 	public MessageFolder save(MessageFolder messageFolder) {
 		Actor actor;
 		MessageFolder res;
+		Collection<MessageFolder> messageFoldersForActor;
 
 		actor = this.actorService.findPrincipal();
+		messageFoldersForActor = actor.getMessagesFolders();
 
 		Assert.notNull(messageFolder);
 		Assert.notNull(actor);
@@ -78,7 +80,12 @@ public class MessageFolderService {
 			Assert.isTrue(messageFolder.isModifiable() == true, "This folder is not modifiable");
 		}
 		messageFolder.setModifiable(true);
+
 		res = this.messageFolderRepository.save(messageFolder);
+
+		for (MessageFolder m : messageFoldersForActor)
+			Assert.isTrue(!m.getName().equals(messageFolder.getName()), "This name already exists");
+
 		if (messageFolder.getId() == 0)
 			actor.getMessagesFolders().add(res);
 
