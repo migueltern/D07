@@ -55,13 +55,15 @@
 	<br/>
 
 	<div>
-	
+
 		<script type="text/javascript">
 		function valida(phone) {
 			var m = document.getElementById("phone").value;
+			var email = document.getElementById("email").value;
+			var aux = m.length;
 			var expreg = /^(\+\d{1,3})?\s?(\(\d{3}\))?\s?\d{4,100}$/;
-
-			if (!expreg.test(m)) {
+			if((email=="" && aux>0 && !expreg.test(m))|| (email!="" && aux<4 && aux>0 && !expreg.test(m)) ){
+	
 				var confirmar = confirm("Are you sure you want to save this phone?");
 				if (confirmar) {
 					return true;
@@ -69,7 +71,6 @@
 					return false;
 				}
 			}
-
 		}
 	</script>
 		<input type="submit" name="save"
