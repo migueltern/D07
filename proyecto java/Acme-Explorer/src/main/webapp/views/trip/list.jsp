@@ -153,7 +153,7 @@
 	<spring:message code="trip.publicationDate" var="publicationDate" />	
 	<spring:message code="trip.createStage" var="CreateStages" />
 		<display:column title="${CreateStages}" sortable="true">
-			<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+			<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
 				<spring:url value="stage/manager/create.do" var="editURL">
 					<spring:param name="tripId" value="${row.id}" />
 				</spring:url>
@@ -178,7 +178,7 @@
 <security:authorize access="hasRole('AUDITOR')">
 	<spring:message code="trip.auditRecord.create" var="Create" />
 	<display:column title="${Create}" sortable="true">
-	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
 		<spring:url value="auditRecord/auditor/create.do" var="createURL">
 			<spring:param name="tripId" value="${row.id}" />
 		</spring:url>
@@ -191,7 +191,7 @@
 <security:authorize access="hasRole('AUDITOR')">
 <spring:message code="note.create" var="Create" />
 	<display:column title="${Create}" sortable="true">
-	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
 		<spring:url value="note/auditor/create.do" var="createURL">
 			<spring:param name="tripId" value="${row.id}" />
 		</spring:url>
@@ -203,7 +203,7 @@
 <security:authorize access="hasRole('MANAGER')">
 	<spring:message code="trip.survivalClass" var="SurvivalClasses" />
 	<display:column title="${SurvivalClasses}" sortable="true">
-	<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+	<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
 		<spring:url value="survivalClass/manager/create.do" var="createURL">
 			<spring:param name="tripId" value="${row.id}" />
 		</spring:url>

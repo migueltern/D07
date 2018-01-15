@@ -2,6 +2,7 @@
 package controllers.manager;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -111,13 +112,15 @@ public class StageManagerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Stage stage, BindingResult binding) {
 		ModelAndView result;
+		Date now;
 
+		now = new Date();
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(stage);
 		else
 			try {
+				Assert.isTrue(!stage.getTrip().getPublicationDate().before(now));
 				this.stageService.save(stage);
-
 				result = new ModelAndView("redirect:list.do?tripId=" + stage.getTrip().getId());
 			} catch (Throwable oops) {
 				if (oops.getMessage().equals("The number of this stage must be different"))

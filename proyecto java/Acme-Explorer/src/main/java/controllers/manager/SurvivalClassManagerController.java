@@ -119,11 +119,14 @@ public class SurvivalClassManagerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final SurvivalClass survivalClass, final BindingResult bindingResult) {
 		ModelAndView result;
+		Date now;
 
+		now = new Date();
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(survivalClass, "survivalClass.save.commit.error");
 		else
 			try {
+				Assert.isTrue(!survivalClass.getTrip().getPublicationDate().before(now));
 				this.survivalClassService.save(survivalClass);
 				result = new ModelAndView("redirect:list.do");
 

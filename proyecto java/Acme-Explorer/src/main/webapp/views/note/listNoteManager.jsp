@@ -19,6 +19,7 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<jsp:useBean id="util" class="utilities.Methodutilities" scope="page" />
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="notes" requestURI="note/manager/list.do" id="row">

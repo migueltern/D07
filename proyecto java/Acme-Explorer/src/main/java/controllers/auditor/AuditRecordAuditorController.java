@@ -107,13 +107,17 @@ public class AuditRecordAuditorController extends AbstractController {
 	public ModelAndView addTrip(@Valid AuditRecord auditRecord, final BindingResult bindingResult, @RequestParam final int tripId) {
 		ModelAndView result;
 		Trip trip;
+		Date now;
+
+		now = new Date();
 
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(auditRecord, "auditRecordError.commit.error");
 		else
 			try {
-				auditRecord = this.auditRecordService.save(auditRecord);
 				trip = this.tripService.findOne(tripId);
+				Assert.isTrue(!trip.getPublicationDate().before(now));
+				auditRecord = this.auditRecordService.save(auditRecord);
 				trip.getAuditRecords().add(auditRecord);
 				this.tripService.save(trip);
 				result = new ModelAndView("redirect:list.do");

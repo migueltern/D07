@@ -75,7 +75,6 @@ public class NoteService {
 	public Note save(Note note) {
 		Assert.notNull(note);
 		Note result;
-
 		Date createdMoment;
 		String reply;
 

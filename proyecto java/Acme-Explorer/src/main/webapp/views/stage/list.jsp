@@ -58,12 +58,4 @@
 
 </display:table>
 
-<security:authorize access="hasRole('MANAGER')">
-	<div>
-		
-		<spring:url value="stage/manager/create.do" var="stageURL">
-				<spring:param name="tripId" value="${tripId}" />
-			</spring:url>
-		<a href="${stageURL}"><spring:message code="stage.create" /></a>	
-	</div>
-</security:authorize>
+

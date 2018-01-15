@@ -80,13 +80,16 @@ public class NoteAuditorController extends AbstractController {
 	public ModelAndView addTrip(@Valid Note note, final BindingResult bindingResult, @RequestParam final int tripId) {
 		ModelAndView result;
 		Trip trip;
+		Date now;
 
+		now = new Date();
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(note, "note.save.commit.error");
 		else
 			try {
-				note = this.noteService.save(note);
 				trip = this.tripService.findOne(tripId);
+				Assert.isTrue(!trip.getPublicationDate().before(now));
+				note = this.noteService.save(note);
 				trip.getNotes().add(note);
 				this.tripService.save(trip);
 				result = new ModelAndView("redirect:list.do");
