@@ -175,4 +175,10 @@ public class RangerService {
 		}
 		return result;
 	}
+
+	public Ranger findRangerByTripId(int tripId) {
+		Ranger result;
+		result = this.rangerRepository.findRangerByTripId(tripId);
+		return result;
+	}
 }

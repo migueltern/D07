@@ -30,6 +30,14 @@
 	<p><spring:message code="trip.manager.name" />:  <jstl:out value="${trip.manager.name}"></jstl:out></p>
 		
 	
+	<h2><spring:message code="trip.ranger" /></h2>	
+	<display:table name="ranger" id="row" class="displaytag">
+		<spring:message code="trip.ranger" var="titleHeader" />
+		<display:column property="name" title="${titleHeader}" sortable="false" >
+			<jstl:out value="${row.name}"></jstl:out>
+		</display:column>
+	</display:table>
+	
 	<h2><spring:message code="trip.tags.name.table" /></h2>	
 	<display:table name="tags" id="row" class="displaytag">
 		<spring:message code="trip.tags.title" var="titleHeader" />
@@ -69,7 +77,18 @@
 			<jstl:out value="${row.description}"></jstl:out>
 		</display:column>
 	</display:table>
-
+	
+	<security:authorize access="hasRole('MANAGER')">
+	<h2><spring:message code="trip.applications" /></h2>	
+	<display:table name="aplicationFor" id="row" class="displaytag">
+		<spring:message code="trip.applicationFor.status" var="titleHeader" />
+		<display:column property="title" title="${titleHeader}" sortable="false" >
+			<jstl:out value="${row.status}"></jstl:out>
+		</display:column>
+	</display:table>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('MANAGER') || hasRole('AUDITOR')">
 	
 	<h2><spring:message code="trip.notes.name.table" /></h2>	
 	<display:table name="notes" id="row" class="displaytag">
@@ -92,13 +111,13 @@
 		<display:column property="reply" title="${titleHeader4}" sortable="false" >
 			<jstl:out value="${row.reply}"></jstl:out>
 		</display:column>
-		
+	
 		<spring:message code="trip.format.date1" var="pattern"></spring:message>
 		<spring:message code="trip.notes.replyMoment" var="replayMomentHeader" />
 		<display:column property="replyMoment" title="${replayMomentHeader}" sortable="false" format="${pattern}"/>
 			
 	</display:table>
-	
+	</security:authorize>
 	
 	
 	<h2><spring:message code="trip.stories.name.table" /></h2>	
@@ -153,7 +172,7 @@
 </display:table>
 	
 	
-<security:authorize access="hasRole('MAMANGER')">
+<security:authorize access="hasRole('MANAGER')">
 	<input type="button" name="back" value="<spring:message code="trip.back" />"
 		onclick="javascript:  window.location.replace('trip/manager_/list.do');" />
 	<br />

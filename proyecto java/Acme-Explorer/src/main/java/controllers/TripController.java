@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.RangerService;
 import services.SponsorshipService;
 import services.StoryService;
 import services.SurvivalClassService;
 import services.TagService;
 import services.TripService;
+import domain.ApplicationFor;
 import domain.AuditRecord;
 import domain.Note;
+import domain.Ranger;
 import domain.Stage;
 import domain.Story;
 import domain.SurvivalClass;
@@ -40,6 +43,8 @@ public class TripController extends AbstractController {
 	private StoryService			storyService;
 	@Autowired
 	private SurvivalClassService	survivalClassService;
+	@Autowired
+	private RangerService			rangerService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -117,8 +122,11 @@ public class TripController extends AbstractController {
 		Collection<Note> notes;
 		Collection<Story> stories;
 		Collection<SurvivalClass> classes;
+		Collection<ApplicationFor> apply;
+		Ranger ranger;
 		String url;
 
+		ranger = this.rangerService.findRangerByTripId(tripId);
 		classes = new ArrayList<>(this.survivalClassService.findAllSurvivalClassByTripId(tripId));
 		stories = new ArrayList<Story>(this.storyService.findAllStoriesByTripId(tripId));
 		tags = new ArrayList<Tag>(this.tagService.findAllTagByTripId(tripId));
@@ -126,6 +134,7 @@ public class TripController extends AbstractController {
 		notes = new ArrayList<Note>(trip.getNotes());
 		stages = new ArrayList<Stage>(trip.getStages());
 		auditRecords = new ArrayList<AuditRecord>(trip.getAuditRecords());
+		apply = new ArrayList<ApplicationFor>(trip.getApplicationsFor());
 		url = this.sponsorshipService.randomSponsorship(trip);
 
 		result = new ModelAndView("trip/display");
@@ -137,6 +146,8 @@ public class TripController extends AbstractController {
 		result.addObject("sponsorshiprandom", url);
 		result.addObject("stories", stories);
 		result.addObject("classes", classes);
+		result.addObject("aplicationFor", apply);
+		result.addObject("ranger", ranger);
 
 		return result;
 	}
