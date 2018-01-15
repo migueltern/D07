@@ -63,13 +63,25 @@ public class MessageService {
 		Assert.isTrue(messageId != 0);
 
 		Message result;
+		Actor actor;
+		Actor actorMessageSender;
+		Actor actorMessageRecipient;
+		Message messageFind;
+		Collection<MessageFolder> messageFolders;
+
+		messageFind = this.messageRepository.findOne(messageId);
+		actor = this.actorService.findPrincipal();
+		actorMessageSender = messageFind.getSender();
+		actorMessageRecipient = messageFind.getRecipient();
+		messageFolders = actor.getMessagesFolders();
+
+		Assert.isTrue((actor == actorMessageRecipient || actor == actorMessageSender) && messageFolders.contains(messageFind.getMessageFolder()));
 
 		result = this.messageRepository.findOne(messageId);
 		Assert.notNull(result);
 
 		return result;
 	}
-
 	public Collection<Message> findAll() {
 		Collection<Message> result;
 		result = this.messageRepository.findAll();

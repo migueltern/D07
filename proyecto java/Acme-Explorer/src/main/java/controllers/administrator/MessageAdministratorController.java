@@ -54,6 +54,12 @@ public class MessageAdministratorController extends AbstractController {
 		ModelAndView result;
 		Collection<Message> msgs;
 		Integer messageFolderId1 = messageFolderId;
+		Actor actor;
+		Collection<MessageFolder> messageFolders;
+
+		actor = this.actorService.findPrincipal();
+		messageFolders = actor.getMessagesFolders();
+		Assert.isTrue(messageFolders.contains(this.messageFolderService.findOne(messageFolderId)));
 
 		msgs = this.messageService.messagesOfFolder(messageFolderId);
 
@@ -65,7 +71,6 @@ public class MessageAdministratorController extends AbstractController {
 		return result;
 
 	}
-
 	//Display
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
