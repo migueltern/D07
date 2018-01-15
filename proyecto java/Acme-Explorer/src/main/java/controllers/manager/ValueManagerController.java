@@ -1,6 +1,8 @@
 
 package controllers.manager;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,9 @@ public class ValueManagerController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView enter(@Valid Value value, BindingResult binding) {
 		ModelAndView result;
+		Date now;
+
+		now = new Date();
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(value);
 		else
@@ -60,6 +65,7 @@ public class ValueManagerController {
 				Trip trip1 = this.trip;
 				Assert.isTrue(trip1.getReasonWhy().trim().isEmpty());
 				Tag tag1 = this.tag;
+				Assert.isTrue(!value.getTrip().getPublicationDate().before(now));
 				this.valueService.save1(value, trip1, tag1);
 				result = new ModelAndView("redirect:../../trip/manager_/list.do");
 			} catch (final Throwable oops) {
