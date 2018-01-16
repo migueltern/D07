@@ -34,7 +34,7 @@
   	<jstl:if test="${row.id != 0}">
 	<spring:message code="curricula.ticker" var="tickerHeader" />
 	<display:column property="ticker" title="${tickerHeader}"
-		sortable="true" />
+		sortable="false" />
 	</jstl:if>
 	
 	<security:authorize access="hasRole('RANGER')">
@@ -56,23 +56,23 @@
 	<!-- Attributes -->
 	<spring:message code="curricula.personalRecord.fullName" var="fullNameHeader" />
 	<display:column property="fullName" title="${fullNameHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.personalRecord.photo" var="photoHeader" />
 	<display:column property="photo" title="${photoHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.personalRecord.email" var="emailHeader" />
 	<display:column property="email" title="${emailHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.personalRecord.phone" var="phoneHeader" />
 	<display:column property="phone" title="${phoneHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<spring:message code="curricula.personalRecord.linkedProfile" var="linkedProfileHeader" />
 	<display:column property="linkedProfile" title="${linkedProfileHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<jstl:if test="${showLink}">
 	<security:authorize access="hasRole('RANGER')">
@@ -95,23 +95,23 @@
 	<!-- Attributes -->
 	<spring:message code="curricula.educationRecord.diplomaTitle" var="diplomaTitleHeader" />
 	<display:column property="diplomaTitle" title="${diplomaTitleHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.educationRecord.studyingPeriod" var="studyingPeriodHeader" />
 	<display:column property="studyingPeriod" title="${studyingPeriodHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.educationRecord.institution" var="institutionHeader" />
 	<display:column property="institution" title="${institutionHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.educationRecord.link" var="linkHeader" />
 	<display:column property="link" title="${linkHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<spring:message code="curricula.educationRecord.comments" var="commentsHeader" />
 	<display:column property="comments" title="${commentsHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<jstl:if test="${showLink}">
 	<security:authorize access="hasRole('RANGER')">
@@ -142,23 +142,23 @@
 	<!-- Attributes -->
 	<spring:message code="curricula.professionalRecord.companyName" var="companyNameHeader" />
 	<display:column property="companyName" title="${companyNameHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.professionalRecord.workPeriod" var="workPeriodHeader" />
 	<display:column property="workPeriod" title="${workPeriodHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.professionalRecord.role" var="roleHeader" />
 	<display:column property="role" title="${roleHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.professionalRecord.link" var="linkHeader" />
 	<display:column property="link" title="${linkHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<spring:message code="curricula.professionalRecord.comments" var="commentsHeader" />
 	<display:column property="comments" title="${commentsHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<jstl:if test="${showLink}">
 	<security:authorize access="hasRole('RANGER')">
@@ -189,23 +189,23 @@
 	<!-- Attributes -->
 	<spring:message code="curricula.endorserRecord.fullName" var="fullNameHeader" />
 	<display:column property="fullName" title="${fullNameHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.endorserRecord.email" var="emailHeader" />
 	<display:column property="email" title="${emailHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.endorserRecord.linkedProfile" var="linkedProfileHeader" />
 	<display:column property="linkedProfile" title="${linkedProfileHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.endorserRecord.comments" var="commentsHeader" />
 	<display:column property="comments" title="${commentsHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<spring:message code="curricula.endorserRecord.phone" var="phoneHeader" />
 	<display:column property="phone" title="${phoneHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<jstl:if test="${showLink}">	
 	<security:authorize access="hasRole('RANGER')">
@@ -237,15 +237,15 @@
 	<!-- Attributes -->
 	<spring:message code="curricula.miscellaneousRecord.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}"
-		sortable="true" />
+		sortable="false" />
 	
 	<spring:message code="curricula.miscellaneousRecord.link" var="linkHeader" />
 	<display:column property="link" title="${linkHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<spring:message code="curricula.miscellaneousRecord.comments" var="commentsHeader" />
 	<display:column property="comments" title="${commentsHeader}"
-		sortable="true" />
+		sortable="false" />
 		
 	<jstl:if test="${showLink}">
 	<security:authorize access="hasRole('RANGER')">
