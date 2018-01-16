@@ -50,7 +50,7 @@ public class ApplicationForService {
 
 	// Simple CRUD methods ----------------------------------------------------
 
-	public ApplicationFor create(Trip trip) {
+	public ApplicationFor create(final Trip trip) {
 		ApplicationFor result;
 		String status;
 		Date moment;
@@ -146,7 +146,7 @@ public class ApplicationForService {
 			applicationFor.setReasonWhy("");
 		} else {
 			applicationFor.setStatus("REJECTED");
-			applicationFor.setReasonWhy("Error");
+			applicationFor.setReasonWhy("expired creditCard");
 		}
 		result = this.applicationForRepository.save(applicationFor);
 		return result;
@@ -221,7 +221,7 @@ public class ApplicationForService {
 
 	}
 
-	public Boolean applicationForContainsSpam(Actor actor) {
+	public Boolean applicationForContainsSpam(final Actor actor) {
 		Collection<ApplicationFor> applicationForFromActor;
 		Collection<String> words;
 		Collection<String> spamWords;
@@ -232,14 +232,14 @@ public class ApplicationForService {
 		words = new ArrayList<String>();
 		spamWords = this.configurationSystemService.spamWord();
 
-		for (ApplicationFor application : applicationForFromActor) {
+		for (final ApplicationFor application : applicationForFromActor) {
 			words.add(application.getReasonWhy().toLowerCase());
-			for (String c : application.getComments())
+			for (final String c : application.getComments())
 				words.add(c.toLowerCase());
 		}
 
-		for (String word : words)
-			for (String spam : spamWords)
+		for (final String word : words)
+			for (final String spam : spamWords)
 				if (word.indexOf(spam) > -1) {
 					result = true;
 					break;
@@ -247,12 +247,12 @@ public class ApplicationForService {
 
 		return result;
 	}
-	public boolean moreThanThirtyDays(Date startdate) {
+	public boolean moreThanThirtyDays(final Date startdate) {
 		boolean res = false;
-		Date dNow = new Date(System.currentTimeMillis());
-		long uno = dNow.getTime();
-		long dos = startdate.getTime();
-		double dias = ((dos - uno) * 1.0 / 86400000);
+		final Date dNow = new Date(System.currentTimeMillis());
+		final long uno = dNow.getTime();
+		final long dos = startdate.getTime();
+		final double dias = ((dos - uno) * 1.0 / 86400000);
 		if (dias > 30)
 			res = true;
 		return res;
