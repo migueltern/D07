@@ -112,8 +112,9 @@ public class TripService {
 		Date dateNow;
 
 		dateNow = new Date();
+		//Continua si la fecha de empezar es anterior a la de final
 		Assert.isTrue(trip.getStartDate().before(trip.getFinishDate()));
-		Assert.isTrue(trip.getPublicationDate().after(dateNow));
+		//Continua si la fecha de publicacion es anterior a la de empezar
 		Assert.isTrue(trip.getPublicationDate().before(trip.getStartDate()));
 		if (trip.getId() != 0)
 			Assert.isTrue(trip.getPublicationDate().after(dateNow));

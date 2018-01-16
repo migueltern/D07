@@ -112,10 +112,14 @@ public class TripManagerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Trip trip, final BindingResult binding) {
 		ModelAndView result;
+		Date dateNow;
+		dateNow = new Date();
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(trip, "trip.save.commit.error");
 		else
 			try {
+				if ((trip.getReasonWhy().trim().isEmpty()) || trip.getReasonWhy() == null)
+					Assert.isTrue(trip.getPublicationDate().after(dateNow));
 				if (trip.getId() != 0)
 					Assert.isTrue((trip.getReasonWhy() == null) || (trip.getReasonWhy().trim().isEmpty()));
 				this.tripService.save(trip);
