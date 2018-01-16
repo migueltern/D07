@@ -116,13 +116,14 @@ public class TripService {
 		Assert.isTrue(trip.getStartDate().before(trip.getFinishDate()));
 		//Continua si la fecha de publicacion es anterior a la de empezar
 		Assert.isTrue(trip.getPublicationDate().before(trip.getStartDate()));
-		if (trip.getId() != 0)
+		//Esto quiere decir que la estamos creando
+		//Si no tiene reasonWhy debe de comprobar eso
+		if ((trip.getReasonWhy().trim().isEmpty()) || (trip.getReasonWhy() == null))
 			Assert.isTrue(trip.getPublicationDate().after(dateNow));
 
 		result = this.tripRepository.save(trip);
 		return result;
 	}
-
 	public Collection<Trip> findAll() {
 		Collection<Trip> result;
 		result = new ArrayList<Trip>(this.tripRepository.findAll());
