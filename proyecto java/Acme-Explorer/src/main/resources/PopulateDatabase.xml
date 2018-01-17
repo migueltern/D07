@@ -40,6 +40,13 @@
 				<ref bean="mountainGround" />
 			</list>
 		</property>
+		<property name="defaultTags">
+			<list>
+				<ref bean="tag1" />
+				<ref bean="tag2" />
+				<ref bean="tag3" />
+			</list>
+		</property>
 	</bean>
 
 	<!-- User accounts -->
@@ -2456,7 +2463,7 @@
 	</bean> -->
 	<!-- TAGs -->
 
-<!-- 	<bean id="tag1" class="domain.Tag">
+ 	<bean id="tag1" class="domain.Tag">
 		<property name="name" value="country" />
 		<property name="values">
 			<list>
@@ -2479,7 +2486,7 @@
 			</list>
 		</property>
 	</bean>
-
+<!--
 	<bean id="tag4" class="domain.Tag">
 		<property name="name" value="name 4" />
 		<property name="values">

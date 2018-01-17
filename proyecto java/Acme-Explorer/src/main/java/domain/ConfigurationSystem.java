@@ -22,6 +22,7 @@ public class ConfigurationSystem extends DomainEntity {
 	private String					banner;
 	private Collection<String>		spamWords;
 	private Collection<Category>	defaultCategories;
+	private Collection<Tag>			defaultTags;
 	private int						maxNumberFinder;
 	private int						cacheMaxTime;
 
@@ -62,8 +63,22 @@ public class ConfigurationSystem extends DomainEntity {
 		return this.defaultCategories;
 	}
 
+	@ElementCollection
+	@NotNull
+	@NotEmpty
 	public void setDefaultCategories(final Collection<Category> defaultCategories) {
 		this.defaultCategories = defaultCategories;
+	}
+
+	@ElementCollection
+	@NotNull
+	@NotEmpty
+	public Collection<Tag> getDefaultTags() {
+		return this.defaultTags;
+	}
+
+	public void setDefaultTags(Collection<Tag> defaultTags) {
+		this.defaultTags = defaultTags;
 	}
 
 	@NotNull
