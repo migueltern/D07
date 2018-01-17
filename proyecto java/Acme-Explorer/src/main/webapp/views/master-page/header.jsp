@@ -280,7 +280,7 @@
 						code="master.page.manager" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="manager/edit.do"><spring:message code="master.page.sponsor.edit" /></a></li>
+					<li><a href="manager_/edit.do"><spring:message code="master.page.sponsor.edit" /></a></li>
 				</ul></li>
 				
 			<li><a class="fNiv"><spring:message
