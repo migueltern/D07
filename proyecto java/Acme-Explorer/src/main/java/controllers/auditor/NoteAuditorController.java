@@ -87,11 +87,10 @@ public class NoteAuditorController extends AbstractController {
 			result = this.createEditModelAndView(note, "note.save.commit.error");
 		else
 			try {
-				trip = this.tripService.findOne(tripId);
-				Assert.isTrue(!trip.getPublicationDate().before(now));
 				note = this.noteService.save(note);
+				trip = this.tripService.findOne(tripId);
 				trip.getNotes().add(note);
-				this.tripService.save(trip);
+				this.tripService.saveA(trip);
 				result = new ModelAndView("redirect:list.do");
 
 			} catch (final Throwable oops) {
