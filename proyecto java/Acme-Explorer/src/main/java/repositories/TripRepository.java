@@ -23,6 +23,9 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
 	@Query("select t from Trip t where t.publicationDate>CURRENT_TIMESTAMP")
 	Collection<Trip> findAllTripsNotPublished();
 
+	@Query("select t from Trip t where t.publicationDate>CURRENT_TIMESTAMP and t.cancelled=false")
+	Collection<Trip> findAllTripsPublished();
+
 	//Requisito 12.3
 	@Query("select t from Trip t where t.publicationDate<CURRENT_TIMESTAMP and t.startDate>CURRENT_TIMESTAMP")
 	Collection<Trip> findAllTripsPublishedNotStarted();

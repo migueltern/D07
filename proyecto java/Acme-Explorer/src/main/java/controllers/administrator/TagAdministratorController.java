@@ -94,7 +94,10 @@ public class TagAdministratorController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 
 			} catch (Throwable oops) {
-				result = this.createEditModelAndView(tag, "tag.commit.error");
+				if (oops.getMessage().equals("This name already exists"))
+					result = this.createEditModelAndView(tag, "tag.duplicate");
+				else
+					result = this.createEditModelAndView(tag, "tag.commit.error");
 			}
 		return result;
 

@@ -436,6 +436,12 @@ public class TripService {
 		return trips;
 	}
 
+	public Collection<Trip> findAllTripsPublished() {
+		Collection<Trip> trips;
+		trips = this.tripRepository.findAllTripsPublished();
+		return trips;
+	}
+
 	//auditRecord
 
 	public Trip findAuditRecord(final AuditRecord auditRecord) {

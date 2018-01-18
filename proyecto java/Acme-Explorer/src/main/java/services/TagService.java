@@ -62,12 +62,17 @@ public class TagService {
 	public Tag save(final Tag tag) {
 		Assert.notNull(tag);
 		Collection<Value> values;
+		Collection<Tag> tags;
+
 		values = new ArrayList<Value>(tag.getValues());
+		tags = this.tagRepository.findAll();
 
 		//NO PUEDO MODIFICAR UNA TAG QUE TENGA UN TRIP ASOCIADO
 		if (tag.getId() != 0)
 			Assert.isTrue(values.size() == 0);
 		Tag result;
+		for (Tag t : tags)
+			Assert.isTrue(!t.getName().equals(tag.getName()), "This name already exists");
 		result = this.tagRepository.save(tag);
 		Assert.notNull(result);
 

@@ -56,8 +56,9 @@
 	<spring:message code="legalText.lawsNumber" var="lawsNumber" />:
 	<display:column property="lawsNumber" title="${lawsNumber}" sortable="true" />
 	
+	<spring:message code="legalText.format.date" var="pattern"></spring:message>
 	<spring:message code="legalText.moment" var="moment" />:
-	<display:column property="moment" title="${moment}" sortable="true" />
+	<display:column property="moment" title="${moment}" sortable="true" format="${pattern}"/>
 	
 	<spring:message code="legalText.trip.title" var="trips" />:
 	<display:column title =" ${trips}" sortable="true">
