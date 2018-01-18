@@ -13,13 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ExplorerService;
 import services.SurvivalClassService;
 import services.TripService;
+import controllers.AbstractController;
 import domain.Explorer;
 import domain.SurvivalClass;
 import domain.Trip;
 
 @Controller
 @RequestMapping("/survivalClass/explorer")
-public class SurvivalClassExplorerController {
+public class SurvivalClassExplorerController extends AbstractController {
 
 	@Autowired
 	SurvivalClassService	survivalClassService;
