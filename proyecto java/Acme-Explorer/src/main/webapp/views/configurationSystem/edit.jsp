@@ -23,10 +23,8 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="VAT" />
-	<form:hidden path="banner" />
-	<form:hidden path="spamWords" />
 	<form:hidden path="defaultCategories" />
+	<form:hidden path="defaultTags" />
 	
 	
 	<form:label path="maxNumberFinder">
@@ -42,7 +40,28 @@
 	<form:input path="cacheMaxTime"/>
 	<form:errors cssClass="error" path="cacheMaxTime" />
 	<br />
+	
+	<form:label path="banner">
+		<spring:message code="configurationSystem.banner" />:
+	</form:label>
+	<form:input path="banner" placeholder="http://" />
+	<form:errors cssClass="error" path="banner" />
+	<br />
 
+	<form:label path="spamWords">
+		<spring:message code="configurationSystem.spamWords" />:
+	</form:label>
+	<form:input path="spamWords"/>
+	<form:errors cssClass="error" path="spamWords" />
+	<br />
+	
+	<form:label path="VAT">
+		<spring:message code="configurationSystem.VAT" />:
+	</form:label>
+	<form:input path="VAT"/>
+	<form:errors cssClass="error" path="VAT" />
+	<br />
+	
 	<input type="submit" name="save"
 		value="<spring:message code="configurationSystem.save" />" />&nbsp; 
 	
