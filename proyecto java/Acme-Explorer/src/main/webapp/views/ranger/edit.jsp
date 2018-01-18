@@ -93,19 +93,22 @@
 
 
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 		function valida(phone) {
 			var m = document.getElementById("phone").value;
 			var expreg = /^(\+\d{1,3})?\s?(\(\d{3}\))?\s?\d{4,100}$/;
-
-			if (!expreg.test(m)) {
-				var confirmar = confirm("Are you sure you want to save this phone?");
-				if (confirmar) {
-					return true;
-				} else {
-					return false;
+		
+			if (!m == ''){
+				if(!expreg.test(m)) {
+					var confirmar = confirm("Are you sure you want to save this phone?");
+					if (confirmar ) {
+						return true;
+					} else {
+						return false;
+					}
 				}
 			}
+				
 
 		}
 	</script>
