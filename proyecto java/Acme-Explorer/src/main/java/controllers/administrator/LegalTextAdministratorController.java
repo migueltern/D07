@@ -193,7 +193,10 @@ public class LegalTextAdministratorController extends AbstractController {
 				this.legalTextService.addTrip(legalText);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
-				result = this.createEditModelAndViewTrip(legalText, "legalText.commit.error");
+				if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
+					result = this.createEditModelAndView(legalText, "legalText.duplicate");
+				else
+					result = this.createEditModelAndViewTrip(legalText, "legalText.commit.error");
 			}
 
 		return result;
@@ -214,7 +217,7 @@ public class LegalTextAdministratorController extends AbstractController {
 		ModelAndView result;
 		Collection<Trip> trips;
 
-		trips = this.tripService.findAll();
+		trips = this.tripService.findAllTripsPublished();
 
 		result = new ModelAndView("legalText/editTrip");
 		result.addObject("legalText", legalText);
