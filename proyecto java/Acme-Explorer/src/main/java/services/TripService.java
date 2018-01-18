@@ -205,14 +205,6 @@ public class TripService {
 	}
 	//	// Other business methods -------------------------------------------------
 
-	//	//Para quien no esté autenticado devolvemos todos los trips con restricciones
-	public Collection<Trip> findAllTripsNoAuthenticate() {
-		Collection<Trip> res;
-		res = new ArrayList<Trip>(this.tripRepository.findAllTripsNoAuthenticate());
-		Assert.notNull(res);
-		return res;
-	}
-
 	//	//Requisito 12.3
 	public Collection<Trip> findAllTripsPublishedNotStarted() {
 		Collection<Trip> trips;
@@ -221,9 +213,9 @@ public class TripService {
 		return trips;
 	}
 
-	public Collection<Trip> findAllTripsPublishedNotStartedNotCancelled() {
+	public Collection<Trip> findAllTripsPublishedNotCancelled() {
 		Collection<Trip> trips;
-		trips = new ArrayList<Trip>(this.tripRepository.findAllTripsPublishedNotStartedNotCancelled());
+		trips = new ArrayList<Trip>(this.tripRepository.findAllTripsPublishedNotCancelled());
 		Assert.notNull(trips);
 		return trips;
 	}
@@ -331,7 +323,7 @@ public class TripService {
 		explorer = this.explorerService.findOne(explorerId);
 		applicationsForOfExplorer = explorer.getApplicationsFor();
 		alltrips = this.tripRepository.findAll();
-		tripsForApply = this.tripRepository.findAllTripsPublishedNotStartedNotCancelled();
+		tripsForApply = this.tripRepository.findAllTripsPublishedNotCancelled();
 
 		for (final ApplicationFor a : applicationsForOfExplorer)
 			tripsOfExplorer.add(a.getTrip());

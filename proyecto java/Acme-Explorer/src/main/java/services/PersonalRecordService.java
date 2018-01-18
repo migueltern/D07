@@ -20,8 +20,11 @@ public class PersonalRecordService {
 	@Autowired
 	private PersonalRecordRepository	personalRecordRepository;
 
-
 	// Supporting services ----------------------------------------------------
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
+
 
 	// Constructors-------------------------------------------------------
 
@@ -35,7 +38,7 @@ public class PersonalRecordService {
 		PersonalRecord personalRecord;
 
 		personalRecord = new PersonalRecord();
-		personalRecord.setPhone("+34");
+		personalRecord.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 
 		return personalRecord;
 	}

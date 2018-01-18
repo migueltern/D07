@@ -32,6 +32,9 @@ public class EndorserRecordService {
 	@Autowired
 	private CurriculaService			curriculaService;
 
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
+
 
 	// Constructors-------------------------------------------------------
 
@@ -49,6 +52,7 @@ public class EndorserRecordService {
 		comments = new ArrayList<String>();
 
 		endorserRecord.setComments(comments);
+		endorserRecord.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 
 		return endorserRecord;
 	}

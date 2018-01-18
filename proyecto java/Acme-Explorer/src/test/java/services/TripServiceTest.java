@@ -73,7 +73,7 @@ public class TripServiceTest extends AbstractTest {
 	public void testSave() {
 		this.authenticate("manager5");
 		Trip tripBD;
-		Trip trip5 = this.tripService.findOne(this.getEntityId("trip5"));
+		final Trip trip5 = this.tripService.findOne(this.getEntityId("trip5"));
 		trip5.setDescription("Descripcion editada");
 		tripBD = this.tripService.save(trip5);
 		Assert.notNull(tripBD);
@@ -90,18 +90,12 @@ public class TripServiceTest extends AbstractTest {
 	@Test
 	public void testDelete() {
 		this.authenticate("manager5");
-		Trip trip5 = this.tripService.findOne(this.getEntityId("trip5"));
+		final Trip trip5 = this.tripService.findOne(this.getEntityId("trip5"));
 		this.tripService.delete(trip5);
 
 		this.authenticate(null);
 	}
 	// Other business test methods -------------------------------------------------
-	@Test
-	public void testFindAllTripsNoAuthenticate() {
-		Collection<Trip> trips;
-		trips = new ArrayList<Trip>(this.tripService.findAllTripsNoAuthenticate());
-		Assert.notNull(trips);
-	}
 
 	@Test
 	public void testFindAllTripsPublishedNotStarted() {

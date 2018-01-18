@@ -18,13 +18,14 @@ import services.ConfigurationSystemService;
 import services.ExplorerService;
 import services.FinderService;
 import services.TripService;
+import controllers.AbstractController;
 import domain.Explorer;
 import domain.Finder;
 import domain.Trip;
 
 @Controller
 @RequestMapping("/finder/explorer")
-public class FinderExplorerController {
+public class FinderExplorerController extends AbstractController {
 
 	// Services---------------------------------------------------------
 

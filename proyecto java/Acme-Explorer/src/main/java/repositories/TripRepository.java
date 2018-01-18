@@ -18,8 +18,6 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
 	//que no estén cancelados y además tenga fecha de publicación.
 	//Requisito 10.2
 	//Cambio: Se ha tomado la decision que se muestren todas las Trips en los no autentificados
-	@Query("select t from Trip t ")
-	Collection<Trip> findAllTripsNoAuthenticate();
 
 	//Requisito 12.1
 	@Query("select t from Trip t where t.publicationDate>CURRENT_TIMESTAMP")
@@ -30,8 +28,8 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
 	Collection<Trip> findAllTripsPublishedNotStarted();
 
 	//Requisito 12.3
-	@Query("select t from Trip t where t.publicationDate<CURRENT_TIMESTAMP and t.startDate>CURRENT_TIMESTAMP and t.cancelled=false")
-	Collection<Trip> findAllTripsPublishedNotStartedNotCancelled();
+	@Query("select t from Trip t where t.publicationDate<CURRENT_TIMESTAMP and t.cancelled=false")
+	Collection<Trip> findAllTripsPublishedNotCancelled();
 
 	//Requisito 13.4
 	@Query("select t from Trip t join t.applicationsFor a where a.status='ACCEPTED' and t.startDate>CURRENT_TIMESTAMP")
@@ -52,7 +50,7 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
 	@Query("select t from Trip t join t.applicationsFor a where a.id=?1")
 	Collection<Trip> findAllTripsByApplicationForId(int applicationForId);
 
-	@Query("select t from Trip t where t.ticker like %?1% or t.title like %?1% or t.description like %?1%")
+	@Query("select t from Trip t where (t.ticker like %?1% or t.title like %?1% or t.description like %?1%) and t.publicationDate<CURRENT_TIMESTAMP and t.startDate>CURRENT_TIMESTAMP")
 	Page<Trip> findAllTripsByKeyWord(String search, Pageable pageable);
 
 	@Query("select c.trips from Category c where c.id = ?1")

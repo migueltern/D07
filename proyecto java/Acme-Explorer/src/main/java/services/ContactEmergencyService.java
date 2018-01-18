@@ -43,6 +43,8 @@ public class ContactEmergencyService {
 
 		result = new ContactEmergency();
 
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
+
 		return result;
 	}
 
@@ -94,12 +96,12 @@ public class ContactEmergencyService {
 	}
 	// Other business methods -------------------------------------------------
 
-	public void contactnotexisting(Explorer explorer, ContactEmergency contactemergency) {
+	public void contactnotexisting(final Explorer explorer, final ContactEmergency contactemergency) {
 		if (!explorer.getContactsEmergency().contains(contactemergency))
 			explorer.getContactsEmergency().add(contactemergency);
 	}
 
-	public Boolean contactEmergencyContainsSpam(Explorer explorer) {
+	public Boolean contactEmergencyContainsSpam(final Explorer explorer) {
 		Boolean result;
 		Collection<ContactEmergency> contactsEmergency;
 		Collection<String> words;
@@ -110,13 +112,13 @@ public class ContactEmergencyService {
 		spamWords = this.configurationSystemService.spamWord();
 		contactsEmergency = explorer.getContactsEmergency();
 
-		for (ContactEmergency contact : contactsEmergency) {
+		for (final ContactEmergency contact : contactsEmergency) {
 			words.add(contact.getEmail().toLowerCase());
 			words.add(contact.getName().toLowerCase());
 
 		}
-		for (String word : words)
-			for (String spam : spamWords)
+		for (final String word : words)
+			for (final String spam : spamWords)
 				if (word.indexOf(spam) > -1) {
 					result = true;
 					break;
