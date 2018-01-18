@@ -78,6 +78,7 @@
 	
 	
 <!-- Apply Para un Explorer-->
+<jstl:if test="${!dontShowApply}">
 	<security:authorize access="hasRole('EXPLORER')">			
 		<spring:message code="trip.apply1" var="apply1" />
 		<display:column title="${apply1}" sortable="true">
@@ -87,6 +88,7 @@
 				<a href="${applyURL}"><spring:message code="trip.apply" /></a>
 		</display:column>		
 	</security:authorize>
+</jstl:if>
 	
 <!-- survivalClass  Para un Explorer-->
 	<security:authorize access="hasRole('EXPLORER')">

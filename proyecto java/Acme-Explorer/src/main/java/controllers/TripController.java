@@ -91,6 +91,8 @@ public class TripController extends AbstractController {
 		result.addObject("requestURISearch", "trip/search.do");
 		result.addObject("requestURI", "trip/list.do");
 		result.addObject("showSearch", true);
+		result.addObject("showSearch", true);
+		result.addObject("dontShowApply", true);
 
 		return result;
 	}
