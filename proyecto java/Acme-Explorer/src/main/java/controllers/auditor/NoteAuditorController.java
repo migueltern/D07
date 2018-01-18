@@ -80,9 +80,7 @@ public class NoteAuditorController extends AbstractController {
 	public ModelAndView addTrip(@Valid Note note, final BindingResult bindingResult, @RequestParam final int tripId) {
 		ModelAndView result;
 		Trip trip;
-		Date now;
 
-		now = new Date();
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(note, "note.save.commit.error");
 		else

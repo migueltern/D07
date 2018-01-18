@@ -82,7 +82,7 @@ public class TripController extends AbstractController {
 		Collection<Trip> trips;
 		double price;
 
-		trips = this.tripService.findAllTripsNoAuthenticate();
+		trips = this.tripService.findAllTripsPublishedNotStartedNotCancelled();
 		price = this.tripService.setPriceTrip(trips);
 
 		result = new ModelAndView("trip/list");
