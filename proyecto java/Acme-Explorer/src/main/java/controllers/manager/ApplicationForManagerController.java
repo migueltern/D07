@@ -96,10 +96,13 @@ public class ApplicationForManagerController extends AbstractController {
 			result = this.createEditModelAndView(applicationFor);
 		else
 			try {
-				this.applicationForService.save(applicationFor);
+				this.applicationForService.saveReasonWhy(applicationFor);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(applicationFor, "applicationfor.commit.error");
+				if (oops.getMessage().equals("Status cannot be blank"))
+					result = this.createEditModelAndView(applicationFor, "applicationfor.reasonwhy");
+				else
+					result = this.createEditModelAndView(applicationFor, "applicationfor.commit.error");
 			}
 		return result;
 	}

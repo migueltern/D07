@@ -135,7 +135,42 @@ public class ApplicationForService {
 
 		return result;
 	}
+	public ApplicationFor saveReasonWhy(final ApplicationFor applicationFor) {
+		final Date moment;
+		Assert.notNull(applicationFor);
 
+		ApplicationFor result;
+		String reply;
+		int leng = applicationFor.getReasonWhy().trim().length();
+		reply = applicationFor.getReasonWhy().trim();
+
+		if (reply.equals("") && (leng == 0))
+			Assert.isTrue(4 == 3, "Status cannot be blank");
+
+		if (applicationFor.getId() == 0) {
+			//Solo se cambia el moment la primera vez que se crea, si se actualiza no se cambia su moment
+			moment = new Date(System.currentTimeMillis() - 1000);
+			applicationFor.setMoment(moment);
+		}
+		if (applicationFor.getCreditCard() == null)
+			result = this.applicationForRepository.save(applicationFor);
+		else
+
+			result = this.applicationForRepository.save(applicationFor);
+		if (applicationFor.getStatus().equals("PENDING") == true)
+			this.messageService.messageForNotificationToStatusPending(applicationFor);
+		else if (applicationFor.getStatus().equals("REJECTED") == true)
+			this.messageService.messageForNotificationToStatusRejected(applicationFor);
+
+		else if (applicationFor.getStatus().equals("DUE") == true)
+			this.messageService.messageForNotificationToStatusDue(applicationFor);
+		else if (applicationFor.getStatus().equals("ACCEPTED") == true)
+			this.messageService.messageForNotificationToStatusAccepted(applicationFor);
+		else
+			this.messageService.messageForNotificationToStatusCancelled(applicationFor);
+
+		return result;
+	}
 	public ApplicationFor enter(final ApplicationFor applicationFor) {
 		Assert.notNull(applicationFor);
 		Assert.isTrue(applicationFor.getStatus().equals("DUE"));
