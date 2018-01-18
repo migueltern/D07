@@ -16,7 +16,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<img src="http://creek-tours.com/wp-content/uploads/Kenya-Tanzania-Family-Safari-banner.jpg" alt="Acme-Explorer Co., Inc." />
+	<img src="${bannerURL}" alt="Acme-Explorer Co., Inc." />
 </div>
 
 <div>
