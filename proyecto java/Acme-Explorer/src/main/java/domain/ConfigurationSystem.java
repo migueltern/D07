@@ -25,6 +25,7 @@ public class ConfigurationSystem extends DomainEntity {
 	private Collection<Tag>			defaultTags;
 	private int						maxNumberFinder;
 	private int						cacheMaxTime;
+	private String					defaultPhone;
 
 
 	public double getVAT() {
@@ -77,7 +78,7 @@ public class ConfigurationSystem extends DomainEntity {
 		return this.defaultTags;
 	}
 
-	public void setDefaultTags(Collection<Tag> defaultTags) {
+	public void setDefaultTags(final Collection<Tag> defaultTags) {
 		this.defaultTags = defaultTags;
 	}
 
@@ -99,6 +100,16 @@ public class ConfigurationSystem extends DomainEntity {
 
 	public void setCacheMaxTime(final int cacheMaxTime) {
 		this.cacheMaxTime = cacheMaxTime;
+	}
+
+	@NotNull
+	@NotBlank
+	public String getDefaultPhone() {
+		return this.defaultPhone;
+	}
+
+	public void setDefaultPhone(final String defaultPhone) {
+		this.defaultPhone = defaultPhone;
 	}
 
 }

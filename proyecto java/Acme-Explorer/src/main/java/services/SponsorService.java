@@ -26,15 +26,18 @@ public class SponsorService {
 
 	// Managed repository -----------------------------------------------------
 	@Autowired
-	private SponsorRepository		sponsorRepository;
+	private SponsorRepository			sponsorRepository;
 
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private MessageFolderService	messageFolderService;
+	private MessageFolderService		messageFolderService;
 
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -66,7 +69,7 @@ public class SponsorService {
 		result.setMessagesFolders(messagesFolders);
 		result.setSocialIdentities(socialIdentities);
 		result.setSponsorships(sponsorships);
-		result.setPhone("+34");
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 		result.setSuspicious(false);
 
 		return result;

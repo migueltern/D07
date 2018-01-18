@@ -25,14 +25,17 @@ public class AdministratorService {
 
 	// Managed repository -----------------------------------------------------
 	@Autowired
-	private AdministratorRepository	administratorRepository;
+	private AdministratorRepository		administratorRepository;
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private MessageFolderService	messageFolderService;
+	private MessageFolderService		messageFolderService;
 
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	// Constructors-------------------------------------------------------
@@ -63,7 +66,7 @@ public class AdministratorService {
 		result.setUserAccount(userAccount);
 		result.setSocialIdentities(socialIdentities);
 		result.setMessagesFolders(messagesFolders);
-		result.setPhone("+34");
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 		result.setSuspicious(false);
 
 		return result;

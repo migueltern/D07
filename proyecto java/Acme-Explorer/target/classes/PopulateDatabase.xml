@@ -15,6 +15,7 @@
 		<property name="maxNumberFinder" value="10" />
 		<property name="VAT" value="0.21" />
 		<property name="cacheMaxTime" value="1" />
+		<property name="defaultPhone" value="+34" />
 		<property name="banner"
 			value="http://creek-tours.com/wp-content/uploads/Kenya-Tanzania-Family-Safari-banner.jpg" />
 		<property name="spamWords">

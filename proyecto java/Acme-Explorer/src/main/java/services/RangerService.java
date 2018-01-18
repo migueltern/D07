@@ -27,18 +27,21 @@ public class RangerService {
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private RangerRepository		rangerRepository;
+	private RangerRepository			rangerRepository;
 
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private MessageFolderService	messageFolderService;
+	private MessageFolderService		messageFolderService;
 
 	@Autowired
-	private CurriculaService		curriculaService;
+	private CurriculaService			curriculaService;
 
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	// Constructors-------------------------------------------------------
@@ -74,7 +77,7 @@ public class RangerService {
 		result.setMessagesFolders(messagesFolders);
 		result.setSocialIdentities(socialIdentities);
 		result.setTrips(trips);
-		result.setPhone("+34");
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 		result.setSuspicious(false);
 
 		return result;
@@ -159,7 +162,7 @@ public class RangerService {
 
 		curricula = this.curriculaService.findAll();
 
-		for (Curricula c : curricula)
+		for (final Curricula c : curricula)
 			if (c.getRanger().equals(ranger)) {
 				result = this.curriculaService.curriculaContainsSpam(ranger);
 				if (result == true) {
@@ -176,7 +179,7 @@ public class RangerService {
 		return result;
 	}
 
-	public Ranger findRangerByTripId(int tripId) {
+	public Ranger findRangerByTripId(final int tripId) {
 		Ranger result;
 		result = this.rangerRepository.findRangerByTripId(tripId);
 		return result;

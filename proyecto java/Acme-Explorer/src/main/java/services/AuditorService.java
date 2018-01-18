@@ -26,21 +26,24 @@ public class AuditorService {
 
 	// Managed repository -----------------------------------------------------
 	@Autowired
-	private AuditorRepository		auditorRepository;
+	private AuditorRepository			auditorRepository;
 
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private MessageFolderService	messageFolderService;
+	private MessageFolderService		messageFolderService;
 
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
 
 	@Autowired
-	private AuditRecordService		auditRecordService;
+	private AuditRecordService			auditRecordService;
 
 	@Autowired
-	private NoteService				noteService;
+	private NoteService					noteService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	// Constructors-------------------------------------------------------
@@ -79,7 +82,7 @@ public class AuditorService {
 		result.setSocialIdentities(socialIdentities);
 		result.setNotes(notes);
 		result.setAuditRecords(auditrecords);
-		result.setPhone("+34");
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 		result.setSuspicious(false);
 
 		return result;

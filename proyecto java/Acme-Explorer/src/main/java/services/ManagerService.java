@@ -27,18 +27,21 @@ public class ManagerService {
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private ManagerRepository		managerRepository;
+	private ManagerRepository			managerRepository;
 
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private MessageFolderService	messageFolderService;
+	private MessageFolderService		messageFolderService;
 
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
 
 	@Autowired
-	private SurvivalClassService	survivalClassService;
+	private SurvivalClassService		survivalClassService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	// Constructors-------------------------------------------------------
@@ -79,7 +82,7 @@ public class ManagerService {
 		result.setTrips(trips);
 		result.setApplicationsFor(applicationsFor);
 		result.setSuspicious(false);
-		result.setPhone("+34");
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 
 		return result;
 

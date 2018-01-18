@@ -29,26 +29,29 @@ public class ExplorerService {
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private ExplorerRepository		explorerRepository;
+	private ExplorerRepository			explorerRepository;
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private MessageFolderService	messageFolderService;
+	private MessageFolderService		messageFolderService;
 
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
 
 	@Autowired
-	private ContactEmergencyService	contactEmergencyService;
+	private ContactEmergencyService		contactEmergencyService;
 
 	@Autowired
-	private ApplicationForService	applicationForService;
+	private ApplicationForService		applicationForService;
 
 	@Autowired
-	private StoryService			storyService;
+	private StoryService				storyService;
 
 	@Autowired
-	private FinderService			finderService;
+	private FinderService				finderService;
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -90,7 +93,7 @@ public class ExplorerService {
 		result.setStories(stories);
 		result.setApplicationsFor(applicationsFor);
 		result.setContactsEmergency(contactsEmergency);
-		result.setPhone("+34");
+		result.setPhone(this.configurationSystemService.findOne().getDefaultPhone());
 		result.setSuspicious(false);
 
 		return result;

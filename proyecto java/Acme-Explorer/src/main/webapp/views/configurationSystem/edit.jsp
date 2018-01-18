@@ -62,6 +62,13 @@
 	<form:errors cssClass="error" path="VAT" />
 	<br />
 	
+	<form:label path="defaultPhone">
+		<spring:message code="configurationSystem.defaultPhone" />:
+	</form:label>
+	<form:input path="defaultPhone"/>
+	<form:errors cssClass="error" path="defaultPhone" />
+	<br />
+	
 	<input type="submit" name="save"
 		value="<spring:message code="configurationSystem.save" />" />&nbsp; 
 	
