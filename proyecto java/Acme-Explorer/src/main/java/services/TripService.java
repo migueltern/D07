@@ -124,6 +124,17 @@ public class TripService {
 		result = this.tripRepository.save(trip);
 		return result;
 	}
+
+	public Trip saveA(final Trip trip) {
+		Assert.notNull(trip);
+		Trip result;
+		//Continua si la fecha de empezar es anterior a la de final
+		Assert.isTrue(trip.getStartDate().before(trip.getFinishDate()));
+		//Continua si la fecha de publicacion es anterior a la de empezar
+		Assert.isTrue(trip.getPublicationDate().before(trip.getStartDate()));
+		result = this.tripRepository.save(trip);
+		return result;
+	}
 	public Collection<Trip> findAll() {
 		Collection<Trip> result;
 		result = new ArrayList<Trip>(this.tripRepository.findAll());
