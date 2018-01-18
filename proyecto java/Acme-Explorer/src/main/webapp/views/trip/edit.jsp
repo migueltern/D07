@@ -91,7 +91,8 @@
 	<form:label path="ranger">
 		<spring:message code="trip.ranger" />:
 	</form:label>
-	<form:select id="ranger" path="ranger" >		
+	<form:select id="ranger" path="ranger" >
+		<form:option value="0" label="----" />			
 		<form:options items="${rangers}" itemValue="id" itemLabel="name" />		
 	</form:select>
 	<form:errors cssClass="error" path="ranger" />
