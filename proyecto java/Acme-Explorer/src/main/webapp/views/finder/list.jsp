@@ -75,7 +75,7 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="trips" requestURI="${requestURI}" id="row">
 
- <!-- Display -->
+<!-- Display -->
 	<spring:message code="trip.display" var="Display" />
 	<display:column title="${Display}" sortable="true">
 		<spring:url value="trip/display.do" var="displayURL">
@@ -84,9 +84,39 @@
 		<a href="${displayURL}"><spring:message code="trip.display" /></a>
 	</display:column>
 
+
+<!-- Edit Para un Manager-->
+	<security:authorize access="hasRole('MANAGER')">
+	<spring:message code="trip.publicationDate" var="publicationDate" />	
+	<spring:message code="trip.edit" var="Edit" />
+		<display:column title="${Edit}" sortable="true">
+			<jstl:if test="${row.manager==manager && util.publicationDate(row.publicationDate)==true && (row.reasonWhy==null or row.reasonWhy=='')}">
+			
+				<spring:url value="trip/manager_/edit.do" var="editURL">
+					<spring:param name="tripId" value="${row.id}" />
+				</spring:url>
+				<a href="${editURL}"><spring:message code="trip.edit" /></a>
+			
+		</jstl:if>
+		</display:column>		
+	</security:authorize>
+	
+	
+<!-- Apply Para un Explorer-->
+	<security:authorize access="hasRole('EXPLORER')">			
+		<spring:message code="trip.apply1" var="apply1" />
+		<display:column title="${apply1}" sortable="true">
+			<spring:url value="applicationFor/explorer/edit.do" var="applyURL">
+				<spring:param name="tripId" value="${row.id }" />
+			</spring:url>
+				<a href="${applyURL}"><spring:message code="trip.apply" /></a>
+		</display:column>		
+	</security:authorize>
+	
 <!-- survivalClass  Para un Explorer-->
 	<security:authorize access="hasRole('EXPLORER')">
-	<display:column>
+	<spring:message code="trip.classes" var="classes" />
+	<display:column title="${classes}" sortable="true">
 		<spring:url value="survivalClass/explorer/list-enrol.do" var="displayURL">
 			<spring:param name="tripId" value="${row.id}" />
 		</spring:url>
@@ -96,16 +126,16 @@
 <!-- Cancel  Para un Explorer-->
 
 
- 
+
 	<!-- Attributes -->
 	<spring:message code="trip.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
 
-	<spring:message code="trip.format.price" var="patternPrice "/>
+	<spring:message code="format.price" var="patternPrice"/>
 	<spring:message code="trip.price" var="priceHeader" />
 	<display:column property="price" title="${priceHeader}" sortable="true" format="${patternPrice}"/>
 
-	
+
 	<spring:message code="trip.format.date2" var="pattern"></spring:message>
 	<spring:message code="trip.startDate" var="startDateHeader" />
 	<display:column property="startDate" title="${startDateHeader}" sortable="true" format="${pattern}"/>
@@ -130,13 +160,113 @@
 		</spring:url>
 			<a href="${auditRecordURL}"><spring:message code="trip.auditRecord" /></a>
 	</display:column>
-		
+	
+	<security:authorize access= "hasRole('MANAGER')">
+	<spring:message code="trip.stage" var="Stages" />
+	
+	<display:column title="${Stages}" sortable="true">
+	<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+		<spring:url value="stage/manager/list.do" var="stageURL">
+			<spring:param name="tripId" value="${row.id }" />
+		</spring:url>
+			<a href="${stageURL}"><spring:message code="trip.stage" /></a>
+			</jstl:if>
+	</display:column>
+	
+	</security:authorize>
+	
+		<security:authorize access="hasRole('MANAGER')">
+	<spring:message code="trip.publicationDate" var="publicationDate" />	
+	<spring:message code="trip.createStage" var="CreateStages" />
+		<display:column title="${CreateStages}" sortable="true">
+			<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
+				<spring:url value="stage/manager/create.do" var="editURL">
+					<spring:param name="tripId" value="${row.id}" />
+				</spring:url>
+				<a href="${editURL}"><spring:message code="trip.stage.create" /></a>
+			</jstl:if>
+		</display:column>		
+	</security:authorize>
+
+<security:authorize access="hasRole('SPONSOR')">
+	
+	<spring:message code="sponsorship.create" var="Create" />
+	<display:column title="${Create}" sortable="true">
+	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+		<spring:url value="sponsorship/sponsor/create.do" var="createURL">
+			<spring:param name="tripId" value="${row.id}" />
+		</spring:url>
+		<a href="${createURL}"><spring:message code="sponsorship.create" /></a>
+	</jstl:if>
+	</display:column>
+</security:authorize>
+
+<security:authorize access="hasRole('AUDITOR')">
+	<spring:message code="trip.auditRecord.create" var="Create" />
+	<display:column title="${Create}" sortable="true">
+	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+		<spring:url value="auditRecord/auditor/create.do" var="createURL">
+			<spring:param name="tripId" value="${row.id}" />
+		</spring:url>
+		<a href="${createURL}"><spring:message code="auditRecord.create" /></a>
+	</jstl:if>
+	</display:column>
+</security:authorize>
 
 
+<security:authorize access="hasRole('AUDITOR')">
+<spring:message code="note.create" var="Create" />
+	<display:column title="${Create}" sortable="true">
+	<jstl:if test="${row.cancelled==false && util.finishDateFuture(row.finishDate)==true}">
+		<spring:url value="note/auditor/create.do" var="createURL">
+			<spring:param name="tripId" value="${row.id}" />
+		</spring:url>
+		<a href="${createURL}"><spring:message code="note.create" /></a>
+	</jstl:if>
+	</display:column>
+</security:authorize>
 
-<jstl:if test="${row.cancelled==false}">
-<spring:message code="trip.reasonWhy" var="reasonWhyHeader" />
-</jstl:if>
-<display:column property="reasonWhy" title="${reasonWhyHeader}" sortable="true" />
+<security:authorize access="hasRole('MANAGER')">
+	<spring:message code="trip.survivalClass" var="SurvivalClasses" />
+	<display:column title="${SurvivalClasses}" sortable="true">
+	<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
+		<spring:url value="survivalClass/manager/create.do" var="createURL">
+			<spring:param name="tripId" value="${row.id}" />
+		</spring:url>
+		<a href="${createURL}"><spring:message code="survivalClass.create" /></a>
+		</jstl:if>
+	</display:column>
+</security:authorize>
 
+<security:authorize access="hasRole('MANAGER')">
+	<spring:message code="trip.cancel" var="Cancel" />
+	<display:column title="${Cancel}" sortable="true">
+	<jstl:if test="${row.manager==manager && row.startDate>date && row.cancelled==false}">
+		<spring:url value="trip/manager_/cancelTrip.do" var="cancelURL">
+			<spring:param name="tripId" value="${row.id}" />
+		</spring:url>
+		<a href="${cancelURL}"><spring:message code="trip.cancel" /></a>
+		</jstl:if>
+	</display:column>
+</security:authorize>
+
+<jstl:if test="${row.cancelled== true}">
+<spring:message code="trip.reasonWhy" />
+
+	<display:column property="reasonWhy" sortable="true" />
+	</jstl:if>
+	
+	<security:authorize access="hasRole('MANAGER')">
+	<spring:message code="trip.publicationDate" var="publicationDate" />	
+	<spring:message code="trip.tags.name" var="Tag" />
+		<display:column title="${Tag}" sortable="true">
+			<jstl:if test="${row.manager==manager and util.publicationDate(row.publicationDate)==true and (row.reasonWhy==null or row.reasonWhy=='')}">
+				<spring:url value="tag/manager_/list.do" var="tagURL">
+					<spring:param name="tripId" value="${row.id}" />
+				</spring:url>
+				<a href="${tagURL}"><spring:message code="trip.tags.name" /></a>
+			
+			</jstl:if>
+		</display:column>		
+	</security:authorize>
 </display:table>
