@@ -51,7 +51,7 @@ public class ActorServiceTest extends AbstractTest {
 	@Test
 	public void testFindByPrincipal() {
 		Actor actor;
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		actor = this.actorService.findPrincipal();
 		Assert.notNull(actor);
 		this.authenticate(null);

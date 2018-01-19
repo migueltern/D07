@@ -71,10 +71,12 @@ public class TripServiceTest extends AbstractTest {
 
 	@Test
 	public void testSave() {
-		this.authenticate("manager5");
+
 		Trip tripBD;
-		final Trip trip5 = this.tripService.findOne(this.getEntityId("trip5"));
+		final Trip trip5 = this.tripService.findOne(this.getEntityId("trip1"));
 		trip5.setDescription("Descripcion editada");
+		trip5.setReasonWhy("hola");
+		trip5.setCancelled(true);
 		tripBD = this.tripService.save(trip5);
 		Assert.notNull(tripBD);
 	}

@@ -30,7 +30,7 @@ public class CategoryServicetest extends AbstractTest {
 
 	@Test
 	public void testCreate() {
-		super.authenticate("administrator1");
+		super.authenticate("admin");
 		Category category;
 
 		category = this.categoryService.create();
@@ -40,7 +40,7 @@ public class CategoryServicetest extends AbstractTest {
 	}
 	@Test
 	public void testSave() {
-		super.authenticate("administrator1");
+		super.authenticate("admin");
 		Category result;
 
 		result = this.categoryService.create();
@@ -55,7 +55,7 @@ public class CategoryServicetest extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		super.authenticate("administrator1");
+		super.authenticate("admin");
 		Category category;
 
 		category = this.categoryService.create();
