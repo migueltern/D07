@@ -81,9 +81,13 @@
 	<security:authorize access="hasRole('MANAGER')">
 	<h2><spring:message code="trip.applications" /></h2>	
 	<display:table name="aplicationFor" id="row" class="displaytag">
+	
 		<spring:message code="trip.applicationFor.status" var="titleHeader" />
-		<display:column property="status" title="${titleHeader}" sortable="false" >
-			<jstl:out value="${row.status}"></jstl:out>
+		<display:column property="status" title="${titleHeader}" sortable="false" />
+		
+		<spring:message code="trip.format.date1" var="pattern"></spring:message>
+		<spring:message code="trip.applicationFor.moment" var="titleHeader" />
+		<display:column property="moment" title="${titleHeader}" sortable="false" format="${pattern}">
 		</display:column>
 	</display:table>
 	</security:authorize>
