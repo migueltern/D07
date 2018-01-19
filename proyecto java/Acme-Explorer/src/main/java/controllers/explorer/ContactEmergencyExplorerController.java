@@ -98,7 +98,10 @@ public class ContactEmergencyExplorerController extends AbstractController {
 				this.contactEmergencyService.save(contactEmergency);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(contactEmergency, "contactEmergency.commit.error");
+				if (oops.getMessage().equals("introduce at least one parameter, email or phone"))
+					result = this.createEditModelAndView(contactEmergency, "contactEmergency.error.parameter");
+				else
+					result = this.createEditModelAndView(contactEmergency, "contactEmergency.commit.error");
 			}
 
 		return result;
