@@ -56,7 +56,7 @@
 	<form:label path="initialDate">
 		<spring:message code="trip.search.initialDate" />:
 	</form:label>
-	<form:input path="initialDate" placeholder=" yyyy/dd/MM HH:hh" />
+	<form:input path="initialDate" placeholder=" yyyy/dd/MM" />
 	<form:errors cssClass="error" path="initialDate" />
 	<br />
 	<br />
@@ -64,7 +64,7 @@
 	<form:label path="finalDate">
 		<spring:message code="trip.search.finalDate" />:
 	</form:label>
-	<form:input path="finalDate" placeholder=" yyyy/dd/MM HH:hh" />
+	<form:input path="finalDate" placeholder=" yyyy/dd/MM" />
 	<form:errors cssClass="error" path="finalDate" />
 	<br />
 	<br />

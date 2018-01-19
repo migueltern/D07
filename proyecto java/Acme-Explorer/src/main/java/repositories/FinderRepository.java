@@ -24,9 +24,9 @@ public interface FinderRepository extends JpaRepository<Finder, Integer> {
 	@Query("select t from Trip t where t.price<=?1 and t.publicationDate<CURRENT_TIMESTAMP")
 	Page<Trip> findByHighPrice(Double highPrice, Pageable pageable);
 
-	@Query("select t from Trip t where t.startDate<=?1 and t.publicationDate<CURRENT_TIMESTAMP")
+	@Query("select t from Trip t where t.startDate>=?1 and t.publicationDate<CURRENT_TIMESTAMP")
 	Page<Trip> findByInitialDate(Date initialDate, Pageable pageable);
 
-	@Query("select t from Trip t where t.finishDate>=?1 and t.publicationDate<CURRENT_TIMESTAMP")
+	@Query("select t from Trip t where t.finishDate<=?1 and t.publicationDate<CURRENT_TIMESTAMP")
 	Page<Trip> findByFinalDate(Date initialDate, Pageable pageable);
 }
