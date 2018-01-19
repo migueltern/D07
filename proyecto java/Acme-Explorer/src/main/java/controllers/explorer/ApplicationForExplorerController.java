@@ -52,7 +52,7 @@ public class ApplicationForExplorerController extends AbstractController {
 		//Collection<Trip> trips;
 		Collection<ApplicationFor> applicationFor;
 		Explorer explorer;
-		Date date = new Date();
+		final Date date = new Date();
 		explorer = this.explorerService.findByPrincipal();
 		applicationFor = new ArrayList<ApplicationFor>(explorer.getApplicationsFor());
 		//trips = this.tripService.findAllTripsApplyByExplorerId(explorer.getId());
@@ -113,7 +113,7 @@ public class ApplicationForExplorerController extends AbstractController {
 		applicationFor = this.applicationForService.findOne(applicationForId);
 		result = this.createCancelModelAndView(applicationFor);
 		result.addObject("applicationFor", applicationFor);
-		Trip trip = applicationFor.getTrip();
+		final Trip trip = applicationFor.getTrip();
 		result.addObject("trip", trip);
 
 		return result;
@@ -126,14 +126,14 @@ public class ApplicationForExplorerController extends AbstractController {
 		applicationFor = this.applicationForService.findOne(applicationForId);
 		result = this.createEnterModelAndView(applicationFor);
 		result.addObject("applicationFor", applicationFor);
-		Trip trip = applicationFor.getTrip();
+		final Trip trip = applicationFor.getTrip();
 		result.addObject("trip", trip);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/enter", method = RequestMethod.POST, params = "enter")
-	public ModelAndView enter(@Valid ApplicationFor applicationFor, BindingResult binding) {
+	public ModelAndView enter(@Valid final ApplicationFor applicationFor, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createEditModelAndViewCreditCard(applicationFor, null);
@@ -148,12 +148,16 @@ public class ApplicationForExplorerController extends AbstractController {
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid ApplicationFor applicationFor, BindingResult binding) {
+	public ModelAndView save(@Valid final ApplicationFor applicationFor, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(applicationFor);
 		else
 			try {
+				//Comprobar que esa application esta realizada aun, si la Collection esta vacia significa que no se ha hecho
+				final Collection<ApplicationFor> duplicatedApplies = this.applicationForService.checkDuplicatedApply(applicationFor.getExplorer().getId(), applicationFor.getTrip().getId());
+				Assert.isTrue(duplicatedApplies.isEmpty(), "duplicatedApply");
+
 				this.applicationForService.save(applicationFor);
 				Explorer explorer;
 				explorer = this.explorerService.findByPrincipal();
@@ -161,13 +165,15 @@ public class ApplicationForExplorerController extends AbstractController {
 
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(applicationFor, "applicationfor.commit.error");
+				if (oops.getMessage().equals("duplicatedApply"))
+					result = this.createEditModelAndView(applicationFor, "applicationfor.duplicatedApply.error");
+				else
+					result = this.createEditModelAndView(applicationFor, "applicationfor.commit.error");
 			}
 		return result;
 	}
-
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST, params = "cancel")
-	public ModelAndView cancel(@Valid ApplicationFor applicationFor, BindingResult binding) {
+	public ModelAndView cancel(@Valid final ApplicationFor applicationFor, final BindingResult binding) {
 		ModelAndView result;
 		//Collection<ApplicationFor> applicationsFor;	
 		if (binding.hasErrors())

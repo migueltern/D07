@@ -17,4 +17,8 @@ public interface ApplicationForRepository extends JpaRepository<ApplicationFor, 
 
 	@Query("select c from ApplicationFor c where c.explorer.id=?1")
 	Collection<ApplicationFor> applicationsForOfActor(int explorerId);
+
+	@Query("select a from ApplicationFor a where a.trip.id=?2 and a.explorer.id=?1")
+	Collection<ApplicationFor> checkDuplicatedApply(int explorerId, int tripId);
+
 }

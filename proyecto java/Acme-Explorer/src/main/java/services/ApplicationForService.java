@@ -256,6 +256,15 @@ public class ApplicationForService {
 
 	}
 
+	public Collection<ApplicationFor> checkDuplicatedApply(final int explorerId, final int tripId) {
+		//Si la lista esta vacia significa que no la contiene
+		Collection<ApplicationFor> result;
+
+		result = this.applicationForRepository.checkDuplicatedApply(explorerId, tripId);
+
+		return result;
+	}
+
 	public Boolean applicationForContainsSpam(final Actor actor) {
 		Collection<ApplicationFor> applicationForFromActor;
 		Collection<String> words;
