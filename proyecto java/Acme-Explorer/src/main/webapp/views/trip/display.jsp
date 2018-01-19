@@ -47,7 +47,7 @@
 	</display:table>
 	
 	<h2><spring:message code="trip.requirementsExplorers.name.table" /></h2>	
-	<display:table name="requirements" id="row" class="displaytag">
+	<display:table name="trip.requirementsExplorers" id="row" class="displaytag">
 		<spring:message code="trip.requirementsExplorers.title" var="titleHeader" />
 		<display:column title="${titleHeader}" sortable="false" >
 			<jstl:out value="${row}"></jstl:out>
