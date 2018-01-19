@@ -61,7 +61,7 @@ public class CurriculaServiceTest extends AbstractTest {
 	}
 	@Test
 	public void testSave() {
-		this.authenticate("ranger1");
+		this.authenticate("ranger5");
 		Curricula curricula;
 		curricula = this.curriculaService.create();
 

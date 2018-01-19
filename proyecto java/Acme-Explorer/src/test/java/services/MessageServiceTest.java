@@ -44,7 +44,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testCreate() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		Message message;
 		message = this.messageService.create();
 		Assert.notNull(message);
@@ -53,6 +53,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testFindOneAndFindAllPositive() {
+		this.authenticate("auditor2");
 		Collection<Message> messages;
 		Message messageFind;
 
@@ -61,11 +62,12 @@ public class MessageServiceTest extends AbstractTest {
 
 		Assert.notNull(messages);
 		Assert.notNull(messageFind);
+		this.authenticate(null);
 
 	}
 	@Test
 	public void testSave() {
-		super.authenticate("administrator1");
+		super.authenticate("admin");
 
 		Administrator adminSend;
 		Administrator adminRecip;
@@ -89,11 +91,11 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testChangeFolderMessage() {
-		this.authenticate("administrator1");
+		this.authenticate("administrator2");
 		Message mes;
 		Message messageAfterChangeFolder;
 		MessageFolder messageFolder;
-		messageFolder = this.messageFolderService.findOne(this.getEntityId("TrashBoxAdministrator1"));
+		messageFolder = this.messageFolderService.findOne(this.getEntityId("TrashBoxAdministrator2"));
 
 		mes = this.messageService.findOne(this.getEntityId("message1"));
 
@@ -107,7 +109,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testSaveMessageWithWordSpam() {
-		super.authenticate("administrator1");
+		super.authenticate("admin");
 
 		Administrator adminSend;
 		Administrator adminRecip;
@@ -136,7 +138,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testApplicationForChanged() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		ApplicationFor applicationFor;
 		MessageFolder messagesOfNotificationBoxBeforeSendMessage;
 		MessageFolder messagesOfNotificationBoxAfterSendMessage;
@@ -157,7 +159,7 @@ public class MessageServiceTest extends AbstractTest {
 	}
 	@Test
 	public void testSendNotificationToAllActors() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 
 		MessageFolder notificationBoxOfSomeActor;
 		Collection<Message> messageOfNotificationBoxOfSomeActor;
@@ -196,7 +198,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testSenderAllByActor() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		Actor administrator1;
 		administrator1 = this.actorService.findPrincipal();
 
@@ -207,7 +209,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Test
 	public void testDeleteOfOutBoxAndDeleteOfBD() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		Integer idMessage;
 		Message message;
 

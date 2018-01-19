@@ -48,7 +48,7 @@ public class MessageFolderServiceTest extends AbstractTest {
 
 	@Test
 	public void testSave() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		final MessageFolder messageFolder = this.messageFolderService.create();
 		messageFolder.setModifiable(true);
 		messageFolder.setName("Coordinador");
@@ -59,7 +59,7 @@ public class MessageFolderServiceTest extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		Administrator administratorPrincipal;
 		MessageFolder messageFolder;
 		administratorPrincipal = this.administratorService.findByPrincipal();

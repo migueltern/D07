@@ -37,7 +37,7 @@ public class LegalTextServiceTest extends AbstractTest {
 	@Test
 	public void testCreate() {
 
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 
 		LegalText legalText;
 
@@ -76,7 +76,7 @@ public class LegalTextServiceTest extends AbstractTest {
 		LegalText result;
 		Trip trip;
 
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 
 		result = this.legalTextService.create();
 		trip = this.tripService.findOne(super.getEntityId("trip5"));
@@ -99,7 +99,7 @@ public class LegalTextServiceTest extends AbstractTest {
 		LegalText resultSaved;
 		LegalText result;
 
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 
 		result = this.legalTextService.create();
 
@@ -126,7 +126,7 @@ public class LegalTextServiceTest extends AbstractTest {
 		LegalText resultSaved;
 		LegalText result;
 
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 
 		result = this.legalTextService.create();
 

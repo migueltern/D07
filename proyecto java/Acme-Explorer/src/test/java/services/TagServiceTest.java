@@ -55,7 +55,7 @@ public class TagServiceTest extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		Tag tag;
 		tag = this.tagService.findOne(super.getEntityId("tag2"));
 		this.tagService.delete(tag);
@@ -64,7 +64,7 @@ public class TagServiceTest extends AbstractTest {
 
 	@Test
 	public void testUpdate() {
-		this.authenticate("administrator1");
+		this.authenticate("admin");
 		Tag tag;
 		tag = this.tagService.create();
 		tag.setId(7547);
