@@ -82,7 +82,7 @@
 	<h2><spring:message code="trip.applications" /></h2>	
 	<display:table name="aplicationFor" id="row" class="displaytag">
 		<spring:message code="trip.applicationFor.status" var="titleHeader" />
-		<display:column property="title" title="${titleHeader}" sortable="false" >
+		<display:column property="status" title="${titleHeader}" sortable="false" >
 			<jstl:out value="${row.status}"></jstl:out>
 		</display:column>
 	</display:table>
