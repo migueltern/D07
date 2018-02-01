@@ -297,15 +297,6 @@ public class TripService {
 		return alltrips;
 
 	}
-	//Trips auditados por el auditorId
-
-	public Collection<Trip> findByAuditorId(final int auditorId) {
-		Collection<Trip> trips;
-		trips = new ArrayList<Trip>(this.tripRepository.findByAuditorId(auditorId));
-		Assert.notNull(trips);
-		return trips;
-
-	}
 
 	public Collection<Trip> findAllTripsNotPublished() {
 		Collection<Trip> trips;
@@ -406,18 +397,6 @@ public class TripService {
 		return trips;
 	}
 
-	// explorer
-
-	public Collection<Trip> findTripsForStory() {
-		Collection<Trip> trips;
-		Explorer explorer;
-
-		explorer = this.explorerService.findByPrincipal();
-
-		trips = this.tripRepository.findTripsForStory(explorer.getId());
-
-		return trips;
-	}
 	public double setPrice(final Collection<Stage> stages) {
 
 		double priceTrip;
