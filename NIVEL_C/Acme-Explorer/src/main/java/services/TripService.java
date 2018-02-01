@@ -16,17 +16,12 @@ import org.springframework.util.Assert;
 
 import repositories.TripRepository;
 import domain.ApplicationFor;
-import domain.AuditRecord;
 import domain.Category;
 import domain.Explorer;
 import domain.LegalText;
 import domain.Manager;
-import domain.Note;
 import domain.Ranger;
-import domain.Sponsorship;
 import domain.Stage;
-import domain.Story;
-import domain.SurvivalClass;
 import domain.Trip;
 import domain.Value;
 
@@ -52,19 +47,10 @@ public class TripService {
 	private StageService				stageService;
 
 	@Autowired
-	private StoryService				storyService;
-
-	@Autowired
 	private CategoryService				categoryService;
 
 	@Autowired
-	private SurvivalClassService		survivalClassService;
-
-	@Autowired
 	private LegalTextService			legalTextService;
-
-	@Autowired
-	private SponsorshipService			sponsorshipService;
 
 
 	// Constructors------------------------------------------------------------
@@ -77,8 +63,6 @@ public class TripService {
 	public Trip create(final Manager manager) {
 
 		Collection<ApplicationFor> applicationsFor;
-		Collection<AuditRecord> auditRecords;
-		Collection<Note> notes;
 		Collection<Stage> stages;
 		Collection<Value> values;
 		Trip trip;
@@ -87,15 +71,11 @@ public class TripService {
 		ranger = new Ranger();
 		trip = new Trip();
 		applicationsFor = new ArrayList<ApplicationFor>();
-		auditRecords = new ArrayList<AuditRecord>();
-		notes = new ArrayList<Note>();
 		stages = new ArrayList<Stage>();
 		values = new ArrayList<Value>();
 
 		trip.setManager(manager);
 		trip.setApplicationsFor(applicationsFor);
-		trip.setAuditRecords(auditRecords);
-		trip.setNotes(notes);
 		trip.setStages(stages);
 		trip.setValues(values);
 		trip.setTicker(this.generatedTicker());
@@ -150,11 +130,8 @@ public class TripService {
 	}
 
 	public void delete(final Trip trip) {
-		Collection<Story> stories;
 		Collection<Category> categories;
-		Collection<SurvivalClass> survivalClasses;
 		Collection<LegalText> legalTexts;
-		Collection<Sponsorship> sponsorships;
 		int tripId;
 		Date dateNow;
 		Manager managerT;
@@ -166,27 +143,14 @@ public class TripService {
 		Assert.isTrue(trip.getPublicationDate().after(dateNow));
 		Assert.isTrue(managerT.equals(conectado));
 		tripId = trip.getId();
-		sponsorships = new ArrayList<Sponsorship>(this.sponsorshipService.findAllSponsorshipByTripId(tripId));
 		legalTexts = new ArrayList<LegalText>(this.legalTextService.findAllLegalTextByTripId(tripId));
-		survivalClasses = new ArrayList<SurvivalClass>(this.survivalClassService.findAllSurvivalClassByTripId(tripId));
 		categories = new ArrayList<Category>(this.categoryService.findAllCategoriesByTripId(tripId));
-		stories = new ArrayList<Story>(this.storyService.findAllStoriesByTripId(tripId));
-
-		for (final Story s : stories)
-			this.storyService.delete(s);
 
 		for (final Category c : categories)
 			c.getTrips().remove(trip);
 
-		for (final SurvivalClass s : survivalClasses)
-			this.survivalClassService.delete(s);
-
 		for (final LegalText l : legalTexts)
 			l.getTrips().remove(trip);
-
-		for (final Sponsorship s : sponsorships)
-			this.sponsorshipService.delete(s);
-
 		this.tripRepository.delete(trip);
 	}
 
@@ -442,16 +406,6 @@ public class TripService {
 		return trips;
 	}
 
-	//auditRecord
-
-	public Trip findAuditRecord(final AuditRecord auditRecord) {
-
-		Trip trip;
-		trip = this.tripRepository.findAuditRecordByTrip(auditRecord.getId());
-		return trip;
-
-	}
-
 	// explorer
 
 	public Collection<Trip> findTripsForStory() {
@@ -463,15 +417,6 @@ public class TripService {
 		trips = this.tripRepository.findTripsForStory(explorer.getId());
 
 		return trips;
-	}
-
-	public Trip findTripsByNote(final Note note) {
-		Trip trip;
-
-		trip = this.tripRepository.findTripByNote(note.getId());
-
-		return trip;
-
 	}
 	public double setPrice(final Collection<Stage> stages) {
 
