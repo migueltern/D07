@@ -30,11 +30,7 @@
 		<bean class="converters.ManagerToStringConverter" /> 
 		<bean class="converters.StringToManagerConverter" /> 
 		
-		<bean class="converters.ExplorerToStringConverter" /> 
-		<bean class="converters.StringToExplorerConverter" /> 
 		
-		<bean class="converters.AdministratorToStringConverter" /> 
-		<bean class="converters.StringToAdministratorConverter" /> 
 		
 		<bean class="converters.ContactEmergencyToStringConverter" /> 
 		<bean class="converters.StringToContactEmergencyConverter" /> 
