@@ -55,9 +55,4 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	//La query que se pide sobre el numero de referencias de cada legal text en las trips
 	// se ha dividido en dos querys, estas son las dos de arriba
 
-	@Query("select (select count(m1) from Manager m1 where m1.suspicious=false)*1.0/count(m) from Manager m")
-	Double findTheRatOFSuspiciousManagers();
-
-	@Query("select (select count(r1) from Ranger r1 where r1.suspicious=false)*1.0/count(r) from Ranger r")
-	Double findTheRatOFSuspiciousRangers();
 }

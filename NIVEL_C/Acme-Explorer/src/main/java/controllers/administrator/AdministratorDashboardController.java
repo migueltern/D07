@@ -43,9 +43,6 @@ public class AdministratorDashboardController extends AbstractController {
 		Collection<String> titlesOfLegalText;
 		Collection<Integer> findNumOfReferencesOfLegalText;
 
-		Double findTheRatOFSuspiciousManagers;
-		Double findTheRatOFSuspiciousRangers;
-
 		findAvgMinMaxStddevOfTheNumOfApplicationsPerTrip = this.administratorService.findAvgMinMaxStddevOfTheNumOfApplicationsPerTrip();
 		findAvgMinMaxStddevOfTheNumOfTripsPerManager = this.administratorService.findAvgMinMaxStddevOfTheNumOfTripsPerManager();
 		findAvgMinMaxStddevOfThePriceOfTheTrips = this.administratorService.findAvgMinMaxStddevOfThePriceOfTheTrips();
@@ -58,8 +55,6 @@ public class AdministratorDashboardController extends AbstractController {
 		findTrips10porcentMoreApplicationsThanAvg = this.administratorService.findTrips10porcentMoreApplicationsThanAvg();
 		titlesOfLegalText = this.administratorService.titlesOfLegalText();
 		findNumOfReferencesOfLegalText = this.administratorService.findNumOfReferencesOfLegalText();
-		findTheRatOFSuspiciousManagers = this.administratorService.findTheRatOFSuspiciousManagers();
-		findTheRatOFSuspiciousRangers = this.administratorService.findTheRatOFSuspiciousRangers();
 
 		result.addObject("findAvgMinMaxStddevOfTheNumOfApplicationsPerTrip", findAvgMinMaxStddevOfTheNumOfApplicationsPerTrip);
 		result.addObject("findAvgMinMaxStddevOfTheNumOfTripsPerManager", findAvgMinMaxStddevOfTheNumOfTripsPerManager);
@@ -73,8 +68,6 @@ public class AdministratorDashboardController extends AbstractController {
 		result.addObject("findTrips10porcentMoreApplicationsThanAvg", findTrips10porcentMoreApplicationsThanAvg);
 		result.addObject("titlesOfLegalText", titlesOfLegalText);
 		result.addObject("findNumOfReferencesOfLegalText", findNumOfReferencesOfLegalText);
-		result.addObject("findTheRatOFSuspiciousManagers", findTheRatOFSuspiciousManagers);
-		result.addObject("findTheRatOFSuspiciousRangers", findTheRatOFSuspiciousRangers);
 
 		return result;
 

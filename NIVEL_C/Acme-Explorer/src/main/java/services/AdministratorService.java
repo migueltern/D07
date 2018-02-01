@@ -213,18 +213,6 @@ public class AdministratorService {
 		return result;
 	}
 
-	public Double findTheRatOFSuspiciousManagers() {
-		Double result;
-		result = this.administratorRepository.findTheRatOFSuspiciousManagers();
-		return result;
-	}
-
-	public Double findTheRatOFSuspiciousRangers() {
-		Double result;
-		result = this.administratorRepository.findTheRatOFSuspiciousRangers();
-		return result;
-	}
-
 	public Boolean administratorIsSpam(final Administrator administrator) {
 		Boolean result;
 		result = false;
