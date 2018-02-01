@@ -356,16 +356,21 @@ public class TripService {
 		String ticker;
 		String dias;
 		String mes;
+		ticker = "";
 
 		//ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + String.valueOf(calendar.get(Calendar.MONTH) + 1);
 		dias = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-		mes = String.valueOf(calendar.get(Calendar.MONTH));
+		mes = String.valueOf(calendar.get(Calendar.MONTH) + 1);
 		if (dias.length() <= 1)
-			ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "0" + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-		if (mes.length() <= 1)
-			ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + "0" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+			ticker = ticker + "0" + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
 		else
-			ticker = String.valueOf(calendar.get(Calendar.YEAR)).substring(2) + String.valueOf(calendar.get(Calendar.MONTH) + 1) + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+			ticker = ticker + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+
+		if (mes.length() <= 1)
+			ticker = ticker + "0" + String.valueOf(calendar.get(Calendar.MONTH) + 1);
+		else
+			ticker = ticker + String.valueOf(calendar.get(Calendar.MONTH) + 1);
+		ticker = ticker + String.valueOf(calendar.get(Calendar.YEAR)).substring(2);
 		final char[] arr = new char[] {
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 		};
