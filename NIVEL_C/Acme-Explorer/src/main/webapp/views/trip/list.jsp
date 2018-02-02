@@ -148,18 +148,6 @@
 
 
 <security:authorize access="hasRole('MANAGER')">
-	<spring:message code="trip.survivalClass" var="SurvivalClasses" />
-	<display:column title="${SurvivalClasses}" sortable="true">
-	<jstl:if test="${row.manager==manager && row.cancelled==false && util.finishDateFuture(row.finishDate)==true && util.publicationDate(row.publicationDate)==true}">
-		<spring:url value="survivalClass/manager/create.do" var="createURL">
-			<spring:param name="tripId" value="${row.id}" />
-		</spring:url>
-		<a href="${createURL}"><spring:message code="survivalClass.create" /></a>
-		</jstl:if>
-	</display:column>
-</security:authorize>
-
-<security:authorize access="hasRole('MANAGER')">
 	<spring:message code="trip.cancel" var="Cancel" />
 	<display:column title="${Cancel}" sortable="true">
 	<jstl:if test="${row.manager==manager && row.startDate>date && row.cancelled==false}">
