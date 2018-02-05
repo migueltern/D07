@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * converters.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd		
+	">
+
+	<util:list id="converters">
+		<bean class="converters.AdministratorToStringConverter" /> 
+		<bean class="converters.StringToAdministratorConverter" /> 
+		
+		<bean class="converters.SocialIdentityToStringConverter" /> 
+		<bean class="converters.StringToSocialIdentityConverter" /> 
+		
+		<bean class="converters.RangerToStringConverter" /> 
+		<bean class="converters.StringToRangerConverter" /> 
+		
+		<bean class="converters.ManagerToStringConverter" /> 
+		<bean class="converters.StringToManagerConverter" /> 
+		
+		
+		
+		<bean class="converters.ContactEmergencyToStringConverter" /> 
+		<bean class="converters.StringToContactEmergencyConverter" /> 
+			
+		
+		<bean class="converters.ApplicationForToStringConverter" /> 
+		<bean class="converters.StringToApplicationForConverter" /> 
+		
+		<bean class="converters.TagToStringConverter" /> 
+		<bean class="converters.StringToTagConverter" /> 
+		
+		<bean class="converters.LegalTextToStringConverter" /> 
+		<bean class="converters.StringToLegalTextConverter" /> 
+		
+		<bean class="converters.StageToStringConverter" /> 
+		<bean class="converters.StringToStageConverter" /> 
+		
+		<bean class="converters.TripToStringConverter" /> 
+		<bean class="converters.StringToTripConverter" />  
+		
+		<bean class="converters.ConfigurationSystemToStringConverter" /> 
+		<bean class="converters.StringToConfigurationSystemConverter" /> 
+		
+		<bean class ="converters.StringToCreditCardConverter"/>
+		<bean class="converters.CreditCardToStringConverter" />
+		
+		<bean class="converters.StringToMessageFolderConverter"/>
+		<bean class="converters.MessageFolderToStringConverter"/>
+		
+		
+		<bean class ="converters.UserAccountToStringConverter"/>
+		<bean class ="converters.StringToUserAccountConverter"/>
+		
+		<bean class="converters.StringToExplorerConverter"/>
+		<bean class="converters.ExplorerToStringConverter"/>
+		
+		<bean class="converters.CategoryToStringConverter"/>
+		<bean class="converters.StringToCategoryConverter"/>
+		
+		<bean class="converters.StringToMessageConverter"/>
+		<bean class="converters.MessageToStringConverter"/>
+
+		
+		<bean class="converters.StringToAuthorityConverter"/>
+		<bean class="converters.AuthorityToStringConverter"/>
+		
+		<bean class="converters.StringToActorConverter"/>
+		<bean class="converters.ActorToStringConverter"/>
+		
+		<bean class="converters.StringToValueConverter"/>
+		<bean class="converters.ValueToStringConverter"/>
+		
+		<bean class="converters.StringToXxxConverter"/>
+		<bean class="converters.XxxToStringConverter"/>
+				
+	</util:list>
+	
+</beans>
